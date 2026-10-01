@@ -158,6 +158,8 @@ NB Multiplayer checks this repository's releases when it starts (you can turn th
 is out, a banner offers **Update now**, **What's new**, **Later** or **Skip this version**. Updating keeps your settings,
 profile, saves and editions.
 
+<p align="center"><img src="docs/images/15-update-banner.png" alt="Update banner" width="85%"></p>
+
 <p align="center"><img src="docs/images/14-app-about.png" alt="About and updates" width="75%"></p>
 
 ## Troubleshooting
