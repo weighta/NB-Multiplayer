@@ -27,6 +27,7 @@
 - [Hosting a room](#hosting-a-room)
 - [Joining a room](#joining-a-room)
 - [In the game](#in-the-game)
+- [Showdown Town co-op (preview)](#showdown-town-co-op-preview)
 - [Editions and mods](#editions-and-mods)
 - [Updates](#updates)
 - [Troubleshooting](#troubleshooting)
@@ -139,6 +140,28 @@ and confirm.
 
 <p align="center"><img src="docs/images/11-game-loading.png" alt="Vehicle choice" width="75%"></p>
 
+## Showdown Town co-op (preview)
+
+Play the **single-player game together**. Everyone plays their own save; NB Multiplayer shows the other players in your
+Showdown Town as a trolley with Banjo at the wheel, steered 30 times a second to where they really are. You can bump into
+each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* work anywhere in town.
+
+<p align="center"><img src="docs/images/16-coop-town.png" alt="Co-op in Showdown Town" width="100%"></p>
+<p align="center"><i>The host's game: their own trolley (left) and the friend's trolley (right), moving wherever the friend drives in their own game.</i></p>
+
+**1.** **Editions & mods** → **Add co-op edition**. (Friends who join get it installed automatically.)
+
+**2.** Host: on the **Play** page choose the edition **Showdown Town Co-op**, then **Start hosting** (Steam recommended).
+Friends join with the room code as usual. The room panel lists everyone who is synced:
+
+<p align="center"><img src="docs/images/17-coop-room.png" alt="Co-op room" width="85%"></p>
+
+**3.** In the game: **SINGLE PLAYER** → load your save, or start a new game and play until you reach Showdown Town.
+As soon as two players are in town, each sees the other.
+
+> **Preview limits:** players on foot are not shown yet (when someone gets out, their trolley waits where they left it), everyone appears in the standard trolley (not their own
+> vehicle design), and crates, Acts and story progress are not shared yet. Each player has their own time of day.
+
 ## Editions and mods
 
 An **edition** is your game with a patch (`.nbpatch`, made with
@@ -149,8 +172,7 @@ room plays the **host's edition**; joiners switch to it automatically when they 
 
 * **Add edition from a .nbpatch file**: NB Multiplayer builds the edition next to itself. Unchanged game files are
   linked, not copied, so it takes little space, and your own game folder is never modified.
-* **Showdown Town co-op** (playing the single-player game together) and a **patch depot** (browse and download
-  community patches) are in development and will appear here.
+* A **patch depot** (browse and download community patches) is in development and will appear here.
 
 ## Updates
 
