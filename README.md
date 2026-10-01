@@ -170,6 +170,8 @@ each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* wo
   Motors, each player in their own garage, at the same time.
 * **Fight each other**: weapon hits on the other player's trolley (lasers, egg guns, explosions) are sent to their game
   and applied there by the game itself, so their vehicle takes the damage and parts break off and fall into the street.
+* **The same time of day for everyone**: the host picks *Random, Morning, Midday, Afternoon* or *Night* in the co-op
+  room panel, and every player's Showdown Town loads with it (a change applies the next time the town loads).
 * **ULTRA Parts**: **Add co-op + ULTRA Parts** adds the ULTRA Engine, Fuel, Ammo and Wheels, the Plane Hull, the Tiki and
   the Fusion Reactor to Mumbo's Motors for everyone in the room. Showdown Town itself stays as it is.
 
@@ -203,7 +205,7 @@ back when you turn the option off).
 As soon as two players are in town, each sees the other.
 
 > **Preview limits:** players on foot are not shown yet (when someone gets out, their trolley waits where they left it), everyone appears in the standard trolley (not their own
-> vehicle design), ramming and spikes only hurt in each player's own game (the bump itself happens in both), and crates, Acts and story progress are not shared yet. Each player has their own time of day.
+> vehicle design), ramming and spikes only hurt in each player's own game (the bump itself happens in both), and crates, Acts and story progress are not shared yet.
 
 ## Mods, editions and tweaks
 
