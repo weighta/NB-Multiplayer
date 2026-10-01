@@ -148,10 +148,18 @@ Play the **single-player game together**. Everyone plays their own save; NB Mult
 Showdown Town as a trolley with Banjo at the wheel, steered 30 times a second to where they really are. You can bump into
 each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* work anywhere in town.
 
+* **Every vehicle part is unlocked** in the co-op edition, whatever each player's save has: build endlessly in Mumbo's
+  Motors, each player in their own garage, at the same time.
+* **Fight each other**: weapon hits on the other player's trolley (lasers, egg guns, explosions) are sent to their game
+  and applied there by the game itself, so their vehicle takes the damage and parts break off and fall into the street.
+* **ULTRA Parts**: **Add co-op + ULTRA Parts** adds the ULTRA Engine, Fuel, Ammo and Wheels, the Plane Hull, the Tiki and
+  the Fusion Reactor to Mumbo's Motors for everyone in the room. Showdown Town itself stays as it is.
+
 <p align="center"><img src="docs/images/16-coop-town.png" alt="Co-op in Showdown Town" width="100%"></p>
 <p align="center"><i>The host's game: their own trolley (left) and the friend's trolley (right), moving wherever the friend drives in their own game.</i></p>
 
-**1.** **Editions & mods** → **Add co-op edition**. (Friends who join get it installed automatically.)
+**1.** **Mods & editions** → **Add co-op edition** (or **Add co-op + ULTRA Parts**). Friends who join get the same edition
+automatically. (If you have the co-op edition of an older NB Multiplayer, the button says **Update co-op edition**.)
 
 **2.** Host: on the **Play** page choose the edition **Showdown Town Co-op**, then **Start hosting** (Steam recommended).
 Friends join with the room code as usual. The room panel lists everyone who is synced:
@@ -162,7 +170,7 @@ Friends join with the room code as usual. The room panel lists everyone who is s
 As soon as two players are in town, each sees the other.
 
 > **Preview limits:** players on foot are not shown yet (when someone gets out, their trolley waits where they left it), everyone appears in the standard trolley (not their own
-> vehicle design), and crates, Acts and story progress are not shared yet. Each player has their own time of day.
+> vehicle design), ramming and spikes only hurt in each player's own game (the bump itself happens in both), and crates, Acts and story progress are not shared yet. Each player has their own time of day.
 
 ## Mods, editions and tweaks
 
