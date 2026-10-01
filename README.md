@@ -30,6 +30,7 @@
 - [Joining a room](#joining-a-room)
 - [In the game](#in-the-game)
 - [Showdown Town co-op (preview)](#showdown-town-co-op-preview)
+- [Snowy Showdown Town](#snowy-showdown-town)
 - [Mods, editions and tweaks](#mods-editions-and-tweaks)
 - [Projects and NB Studio](#projects-and-nb-studio)
 - [Updates](#updates)
@@ -46,7 +47,9 @@
 |---|---|
 | 🏁 **Online matches** | The game's own Xbox LIVE parties, races, sports and team games, up to 4 players. Friends land in the host's party automatically. |
 | 🏘️ **Showdown Town co-op** *(preview)* | Play the single-player game together: see each other in town, build and change vehicles at the same time, and fight: weapon hits break parts off the other player's vehicle. |
-| 🔧 **Mods & editions** | A mod library with categories (maps, vehicle parts, gameplay, visuals, sounds, tweaks, co-op) and tick-box tweaks such as *Unlimited parts* or *All parts unlocked*. Tick mods, build an edition, play it alone or host it. Friends get missing mods from the host when they join. |
+| 🔧 **Mods & editions** | A mod library with categories (maps, vehicle parts, gameplay, visuals, sounds, tweaks, co-op) and tick-box tweaks such as *Unlimited parts* or *All parts unlocked*. Tick mods, build an edition, play it alone or host it. Mods that change the same world are combined asset by asset. Friends get missing mods from the host when they join. |
+| 📁 **Your modded game** | Modded your game folder by hand in the past? **Add a modded game folder** turns it into a mod you can combine with others and play in co-op. |
+| ❄️ **Snowy Showdown Town** | The first official map mod: Showdown Town under snow, with falling snow everywhere, holly and red-and-green bunting, and winter light and skies for every time of day. Combines with co-op. |
 | ⚙️ **ULTRA Parts** | A bundled vehicle-parts mod: ULTRA Engine, Fuel, Ammo and Wheels, Plane Hull, Tiki and Fusion Reactor in Mumbo's Motors. |
 | 🗂️ **Projects** | Your [NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) projects: NB Multiplayer installs and updates the editor, opens projects in it and turns them into mods. |
 | 💾 **All-unlocked save** | Skip the intro: start every game with everything unlocked (your own save is kept aside). |
@@ -207,6 +210,42 @@ As soon as two players are in town, each sees the other.
 > **Preview limits:** players on foot are not shown yet (when someone gets out, their trolley waits where they left it), everyone appears in the standard trolley (not their own
 > vehicle design), ramming and spikes only hurt in each player's own game (the bump itself happens in both), and crates, Acts and story progress are not shared yet.
 
+## Snowy Showdown Town
+
+<p align="center"><img src="docs/images/24-snowy-night.jpg" alt="Snowy Showdown Town at night" width="100%"></p>
+
+**Snowy Showdown Town** ships with NB Multiplayer as an official mod (*Maps & worlds*). Tick it under
+[Mods & editions](#mods-editions-and-tweaks) and build an edition, alone or together with **Showdown Town Co-op**,
+**ULTRA Parts** and any tweaks:
+
+* **Snow everywhere**: deep snow on the streets, squares and hills, snow-dusted cobbles and jigsaw paving with snow
+  packed into the gaps, snow-covered roofs, frosted trees and benches.
+* **Christmas**: red-and-green bunting across the streets, holly garlands with red berries on the walls, and a snowy
+  painted backdrop in the theatre.
+* **Falling snow** all over town: the snowfall follows the camera, so it snows wherever you drive or walk.
+* **Winter light, fog and skies** for every time of day: a pale morning, a grey-white snowy midday, a lilac dusk and a
+  starry blue night, with the far hills fading into winter mist.
+
+<p align="center"><img src="docs/images/25-snowy-times-of-day.jpg" alt="Morning, midday, dusk and night" width="100%"></p>
+<p align="center"><i>Mumbo's Motors in the morning, at midday, at dusk and at night.</i></p>
+
+<p align="center"><img src="docs/images/26-snowy-before-after.jpg" alt="Original and snowy" width="100%"></p>
+<p align="center"><img src="docs/images/31-snowy-before-after-night.jpg" alt="Original and snowy at night" width="100%"></p>
+<p align="center"><i>The original town (left) and Snowy Showdown Town (right), at midday and at night.</i></p>
+
+<p align="center">
+  <img src="docs/images/27-snowy-vista.jpg" alt="Snowy rooftops and hills" width="49%">
+  <img src="docs/images/30-snowy-clocktower-night.jpg" alt="The clock tower on a snowy night" width="49%">
+</p>
+
+<p align="center"><img src="docs/images/28-snowy-coop.jpg" alt="Snowy Showdown Town in co-op" width="85%"></p>
+<p align="center"><i>Snowy Showdown Town + Co-op: the friend's trolley (ahead) drives through your snowy town.</i></p>
+
+The mod was made the way many players mod: by changing a copy of the game folder by hand, then turning it into a mod
+with **Add a modded game folder** / NB Studio's **Create Patch from a Modified Game Folder**. Its build script and the
+research behind the snow, light and fog are in the
+[NB Studio repository](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) (`snow/`).
+
 ## Mods, editions and tweaks
 
 **Mods** change the game: new maps, vehicle parts, gameplay, looks, and small **tweaks**. Every mod has a category
@@ -226,13 +265,25 @@ mods, press **Build an edition**, then host it or play it alone with **Play solo
 * **Add a mod (.nbpatch)**: mods made with
   [NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) (or by friends) go into
   your mod library.
+* **Add a modded game folder**: a game folder you changed by hand (replaced bundles or textures, a hex-edited
+  `default.xex`) becomes a mod. NB Multiplayer compares it with the original game (it knows the size and SHA-256 of
+  every original file), takes the differences against a clean copy (your game folder, or one you choose), recognises
+  known executable tweaks by name and picks the category for you. If your game folder *is* the modded one, it offers
+  to use the clean copy as your game folder from now on, so your changes become a mod you can tick, combine and share.
+
+<p align="center"><img src="docs/images/29-app-modded-folder.png" alt="Add a modded game folder" width="85%"></p>
 * **Change mods** on an edition ticks its mods so you can add or remove some and rebuild it.
 * **Rooms share mods**: everyone in a room plays the host's edition. A friend who lacks one of its mods gets it from
   the host's room when they join (through Steam too) and NB Multiplayer builds the same edition for them.
 * Editions are built next to NB Multiplayer; unchanged game files are linked, not copied, and your own game folder is
   never modified.
-* **For now** mods can be combined when they change different game files (tweaks always combine). Mods that edit the
-  same world, such as two Showdown Town overhauls, are shown as conflicting; merging them is planned.
+* **Mods combine asset by asset**: when two mods change the same game file, each mod's changed assets (textures,
+  models, markers, scripts, vehicle parts) are taken from that mod. Only two mods changing the *same asset* differently
+  is a conflict, and NB Multiplayer names it (for example *"Mod A" and "Mod B" both change
+  aid_marker_banjox_showdowntown_main*). Tweaks always combine.
+* **Co-op is a layer**: Showdown Town Co-op adds its puppet trolleys as world edits that are replayed on top of the
+  other mods, so co-op works on any Showdown Town: vanilla, snowy, or your own.
+* The Mods page shows the newest version of each mod; older versions stay available for editions that use them.
 * A **mod depot** (browse and download community mods, share your own) is in development.
 
 ## Projects and NB Studio
@@ -268,7 +319,8 @@ profile, saves and editions.
 | A player drops back to their own party while a match loads | Rare; start the match again. |
 | Co-op: I can't see my friend in town | Both of you must play the co-op edition (the room panel shows *Co-op (2 players)*) and be in Showdown Town; players on foot are not shown yet, so get into a vehicle. |
 | Co-op: pressing X warps instead of firing | You are on a warp pad or at a world door: drive off it first. |
-| "These mods cannot be combined yet" | The ticked mods change the same game files (for example two Showdown Town overhauls). Tweaks always combine. |
+| "These mods change the same things" | Two ticked mods change the same asset (the message names it), for example two mods that both edit the town's markers. Untick one of them. |
+| A friend on NB Multiplayer 1.5 or older sees no puppets | Co-op 1.2 needs NB Multiplayer 1.6: everyone in the room should update (About & updates). |
 | Something else | Send `%LOCALAPPDATA%\NB-Multiplayer\data\xenia.log` and `steam.log` from both PCs with an [issue](../../issues). |
 
 ## How it works
@@ -301,6 +353,10 @@ profile, saves and editions.
   player's game, where the game's own damage code applies them (so parts break off naturally).
 * **Mods** are `.nbpatch` files: differences against the original game files, no game data. An edition applies a list
   of mods (its recipe) to a linked copy of your game; executable mods of several mods are merged into one `default.xex`.
+  Files that several mods change are merged asset by asset first; mods can also carry **world edits** (instructions
+  such as "copy this vehicle into the town" or "add this AI route"), replayed after every mod's files.
+* **Modded folders** are compared with a list of the size and SHA-256 of every original game file (shipped with the
+  app, no game data); the clean copy only provides the original bytes of the changed files.
 
 ## Building from source
 
