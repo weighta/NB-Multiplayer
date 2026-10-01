@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-  <b>Play <i>Banjo-Kazooie: Nuts &amp; Bolts</i> online with your friends again.</b><br>
-  The game's own Xbox LIVE multiplayer (parties, races, sports, team games) running in an emulator, connected
-  through Steam: no port forwarding, no accounts, no servers to rent. Plus a mod library with tick-box tweaks,
-  Showdown Town co-op, and your NB Studio projects in one place.
+  <b>Play <i>Banjo-Kazooie: Nuts &amp; Bolts</i> with your friends again: online, in co-op, and with mods.</b><br>
+  One app that runs the game, connects you through Steam (no port forwarding, no accounts, no servers to rent) and
+  manages your mods: the game's own Xbox LIVE races and sports, single-player Showdown Town together, a mod library
+  with tick-box tweaks, and your NB Studio projects.
 </p>
 
 <p align="center">
@@ -22,6 +22,7 @@
 
 ## Contents
 
+- [What it does](#what-it-does)
 - [What you need](#what-you-need)
 - [Install](#install)
 - [First start](#first-start)
@@ -38,6 +39,19 @@
 - [Credits and legal](#credits-and-legal)
 
 ---
+
+## What it does
+
+| | |
+|---|---|
+| 🏁 **Online matches** | The game's own Xbox LIVE parties, races, sports and team games, up to 4 players. Friends land in the host's party automatically. |
+| 🏘️ **Showdown Town co-op** *(preview)* | Play the single-player game together: see each other in town, build and change vehicles at the same time, and fight: weapon hits break parts off the other player's vehicle. |
+| 🔧 **Mods & editions** | A mod library with categories (maps, vehicle parts, gameplay, visuals, sounds, tweaks, co-op) and tick-box tweaks such as *Unlimited parts* or *All parts unlocked*. Tick mods, build an edition, play it alone or host it. Friends get missing mods from the host when they join. |
+| ⚙️ **ULTRA Parts** | A bundled vehicle-parts mod: ULTRA Engine, Fuel, Ammo and Wheels, Plane Hull, Tiki and Fusion Reactor in Mumbo's Motors. |
+| 🗂️ **Projects** | Your [NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) projects: NB Multiplayer installs and updates the editor, opens projects in it and turns them into mods. |
+| 💾 **All-unlocked save** | Skip the intro: start every game with everything unlocked (your own save is kept aside). |
+| 🌐 **Steam connection** | Rooms through Steam's relay network: share a room code, nothing to configure. Home network and direct internet work too. |
+| ⬆️ **Updates** | NB Multiplayer updates itself from this repository's releases (it asks first). |
 
 ## What you need
 
@@ -56,7 +70,7 @@ Up to 4 players per room.
 
 **2.** Right-click the zip → **Properties** → tick **Unblock** → **OK**, then extract it anywhere
 (for example `Documents\NB-Multiplayer`). Keep the folder together: `NBMultiplayer.exe`, `steam_api64.dll` and the
-`xenia` folder belong together.
+`xenia`, `patches` and `saves` folders belong together.
 
 **3.** Run **`NBMultiplayer.exe`**. If Windows says *"Windows protected your PC"*, click **More info → Run anyway**
 (the app is not code-signed). It offers to create a desktop shortcut.
@@ -70,13 +84,16 @@ The **Play** page tells you what's missing. Open **Settings**:
 1. **Player name**: letters and digits, up to 15 characters. It becomes your in-game profile name.
 2. **Game folder**: click **Browse...** and choose the folder that contains `default.xex` and `Bundle`.
    NB Multiplayer only reads it; it never changes your game files.
+3. *(Optional)* **Start every game with the all-unlocked save**: no intro, every world, Act, vehicle and part unlocked
+   (see [Showdown Town co-op](#showdown-town-co-op-preview)).
 
 Your profile and saves are stored in `%LOCALAPPDATA%\NB-Multiplayer` (Settings → *Open data folder*), separate from any
 other Xenia you use.
 
 ## Hosting a room
 
-One player hosts; everyone else joins. On the **Play** page:
+One player hosts; everyone else joins. On the **Play** page, first pick the **edition** to play (*Vanilla* or one you
+built under [Mods & editions](#mods-editions-and-tweaks)); **Play solo** plays it on your own without a room.
 
 <p align="center"><img src="docs/images/01-app-play.png" alt="Play page" width="85%"></p>
 
@@ -104,9 +121,10 @@ bottom lists everyone who connects.
 
 <p align="center"><img src="docs/images/04-app-joining.png" alt="Joining" width="85%"></p>
 
-**2.** NB Multiplayer connects (through Steam for `NBS-` codes), checks that your game files match the host's, switches
-to the host's [edition](#editions-and-mods) if you have it, and starts the game. If something differs it tells you
-exactly what (for example *"vehicle parts library: 2 files"*).
+**2.** NB Multiplayer connects (through Steam for `NBS-` codes), switches to the host's
+[edition](#mods-editions-and-tweaks) (building it, and getting any mod you lack from the host, when you don't have it
+yet), checks that your game files match the host's and starts the game. If something differs it tells you exactly what
+(for example *"vehicle parts library: 2 files"*).
 
 ## In the game
 
@@ -158,11 +176,23 @@ each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* wo
 <p align="center"><img src="docs/images/16-coop-town.png" alt="Co-op in Showdown Town" width="100%"></p>
 <p align="center"><i>The host's game: their own trolley (left) and the friend's trolley (right), moving wherever the friend drives in their own game.</i></p>
 
+<p align="center">
+  <img src="docs/images/22-coop-laser-hit.png" alt="Laser hit on the other player" width="49%">
+  <img src="docs/images/23-coop-parts-off.png" alt="Parts broken off" width="49%">
+</p>
+<p align="center"><i>Fighting: a laser hit on the friend's trolley (left) is applied in the friend's own game, where parts of their vehicle break off (right).</i></p>
+
+<p align="center">
+  <img src="docs/images/21-coop-weapons.png" alt="Every weapon in Mumbo's Motors" width="49%">
+  <img src="docs/images/20-coop-ultra-parts.png" alt="ULTRA engine in Mumbo's Motors" width="49%">
+</p>
+<p align="center"><i>Mumbo's Motors in the co-op edition: every part unlocked, including every weapon (left), and the ULTRA parts (right).</i></p>
+
 **1.** **Mods & editions** → **Add co-op edition** (or **Add co-op + ULTRA Parts**). Friends who join get the same edition
 automatically. (If you have the co-op edition of an older NB Multiplayer, the button says **Update co-op edition**.)
 
 **2.** Host: on the **Play** page choose the edition **Showdown Town Co-op**, then **Start hosting** (Steam recommended).
-Friends join with the room code as usual. The room panel lists everyone who is synced:
+Friends join with the room code as usual. The room panel lists everyone who is synced and how many players each game shows:
 
 <p align="center"><img src="docs/images/17-coop-room.png" alt="Co-op room" width="85%"></p>
 
@@ -183,6 +213,9 @@ shown as a badge and used as a filter. An **edition** is your game with the mods
 mods, press **Build an edition**, then host it or play it alone with **Play solo** on the Play page.
 
 <p align="center"><img src="docs/images/13-app-editions.png" alt="Mods and editions" width="85%"></p>
+
+<p align="center"><img src="docs/images/19-app-mods.png" alt="Mod library" width="85%"></p>
+<p align="center"><i>The mod library: category filters, badges, built-in tweaks and the build bar for the ticked mods.</i></p>
 
 * **Built-in tweaks**: the game-executable mods researched for NB Studio are tick boxes: *Unlimited parts (2000),
   Bigger world edge, No world-edge reset, Bigger garage, Longer draw distance, Change vehicles in town, Breakable town
@@ -231,6 +264,9 @@ profile, saves and editions.
 | Friend stays in their own party | Make sure the host is already in the Xbox LIVE lobby; the friend can back out to the house menu and open Xbox LIVE again. |
 | PlayStation controller acts twice / as two players | DS4Windows or Steam's PlayStation support is also active: close them, or enable *Hide DS4 Controller* in DS4Windows. |
 | A player drops back to their own party while a match loads | Rare; start the match again. |
+| Co-op: I can't see my friend in town | Both of you must play the co-op edition (the room panel shows *Co-op (2 players)*) and be in Showdown Town; players on foot are not shown yet, so get into a vehicle. |
+| Co-op: pressing X warps instead of firing | You are on a warp pad or at a world door: drive off it first. |
+| "These mods cannot be combined yet" | The ticked mods change the same game files (for example two Showdown Town overhauls). Tweaks always combine. |
 | Something else | Send `%LOCALAPPDATA%\NB-Multiplayer\data\xenia.log` and `steam.log` from both PCs with an [issue](../../issues). |
 
 ## How it works
@@ -257,6 +293,12 @@ profile, saves and editions.
   with a fingerprint of the host's game files (SHA-256 of `default.xex` and every bundle) so mismatches are caught early.
 * **Party joining** is automatic: the NB Xenia build befriends everyone in the room and accepts the host's invite as
   soon as you open Xbox LIVE.
+* **Showdown Town co-op** runs each player's own single-player game. NB Multiplayer reads each player's vehicle 30 times
+  a second and drives a stand-in vehicle (a "puppet" trolley of the co-op edition) to the same place in the other
+  games. A small executable mod logs weapon hits on puppets instead of applying them; NB Multiplayer sends them to that
+  player's game, where the game's own damage code applies them (so parts break off naturally).
+* **Mods** are `.nbpatch` files: differences against the original game files, no game data. An edition applies a list
+  of mods (its recipe) to a linked copy of your game; executable mods of several mods are merged into one `default.xex`.
 
 ## Building from source
 
