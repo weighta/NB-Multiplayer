@@ -5,7 +5,8 @@
 <p align="center">
   <b>Play <i>Banjo-Kazooie: Nuts &amp; Bolts</i> online with your friends again.</b><br>
   The game's own Xbox LIVE multiplayer (parties, races, sports, team games) running in an emulator, connected
-  through Steam: no port forwarding, no accounts, no servers to rent.
+  through Steam: no port forwarding, no accounts, no servers to rent. Plus a mod library with tick-box tweaks,
+  Showdown Town co-op, and your NB Studio projects in one place.
 </p>
 
 <p align="center">
@@ -28,7 +29,8 @@
 - [Joining a room](#joining-a-room)
 - [In the game](#in-the-game)
 - [Showdown Town co-op (preview)](#showdown-town-co-op-preview)
-- [Editions and mods](#editions-and-mods)
+- [Mods, editions and tweaks](#mods-editions-and-tweaks)
+- [Projects and NB Studio](#projects-and-nb-studio)
 - [Updates](#updates)
 - [Troubleshooting](#troubleshooting)
 - [How it works](#how-it-works)
@@ -162,17 +164,40 @@ As soon as two players are in town, each sees the other.
 > **Preview limits:** players on foot are not shown yet (when someone gets out, their trolley waits where they left it), everyone appears in the standard trolley (not their own
 > vehicle design), and crates, Acts and story progress are not shared yet. Each player has their own time of day.
 
-## Editions and mods
+## Mods, editions and tweaks
 
-An **edition** is your game with a patch (`.nbpatch`, made with
-[NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-)) applied. Everyone in a
-room plays the **host's edition**; joiners switch to it automatically when they have it.
+**Mods** change the game: new maps, vehicle parts, gameplay, looks, and small **tweaks**. Every mod has a category
+(*Maps & worlds, Vehicle parts, Gameplay & scripts, Textures & visuals, Sounds & music, Tweaks, Co-op & multiplayer*)
+shown as a badge and used as a filter. An **edition** is your game with the mods you ticked, like a mod profile: tick
+mods, press **Build an edition**, then host it or play it alone with **Play solo** on the Play page.
 
-<p align="center"><img src="docs/images/13-app-editions.png" alt="Editions" width="85%"></p>
+<p align="center"><img src="docs/images/13-app-editions.png" alt="Mods and editions" width="85%"></p>
 
-* **Add edition from a .nbpatch file**: NB Multiplayer builds the edition next to itself. Unchanged game files are
-  linked, not copied, so it takes little space, and your own game folder is never modified.
-* A **patch depot** (browse and download community patches) is in development and will appear here.
+* **Built-in tweaks**: the game-executable mods researched for NB Studio are tick boxes: *Unlimited parts (2000),
+  Bigger world edge, No world-edge reset, Bigger garage, Longer draw distance, Change vehicles in town, Breakable town
+  vehicles, Jumping AI vehicles, All parts unlocked, Developer main menu* and more. They combine with each other and
+  with any mod.
+* **Add a mod (.nbpatch)**: mods made with
+  [NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) (or by friends) go into
+  your mod library.
+* **Change mods** on an edition ticks its mods so you can add or remove some and rebuild it.
+* **Rooms share mods**: everyone in a room plays the host's edition. A friend who lacks one of its mods gets it from
+  the host's room when they join (through Steam too) and NB Multiplayer builds the same edition for them.
+* Editions are built next to NB Multiplayer; unchanged game files are linked, not copied, and your own game folder is
+  never modified.
+* **For now** mods can be combined when they change different game files (tweaks always combine). Mods that edit the
+  same world, such as two Showdown Town overhauls, are shown as conflicting; merging them is planned.
+* A **mod depot** (browse and download community mods, share your own) is in development.
+
+## Projects and NB Studio
+
+The **Projects** page lists your NB Studio projects (NB Studio adds every project you open). **Get NB Studio** downloads
+the editor from GitHub and keeps it up to date; **Open in NB Studio** opens a project in it; **Play** runs the project
+with its executable tweaks; **Make a mod** turns it into a mod for your library, with a name, version, category and
+description, and saves the `.nbpatch` file to share in the project's `mods` folder. **New project** makes a copy of
+your game for NB Studio to edit.
+
+<p align="center"><img src="docs/images/18-app-projects.png" alt="Projects" width="85%"></p>
 
 ## Updates
 
