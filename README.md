@@ -167,6 +167,9 @@ Friends join with the room code as usual. The room panel lists everyone who is s
 <p align="center"><img src="docs/images/17-coop-room.png" alt="Co-op room" width="85%"></p>
 
 **3.** In the game: **SINGLE PLAYER** → load your save, or start a new game and play until you reach Showdown Town.
+No save yet, or want everything unlocked? **Settings > Start every game with the all-unlocked save**: **RESUME SAVED GAME**
+then goes straight to Showdown Town with every world, Act, vehicle and part unlocked (your own save is set aside and comes
+back when you turn the option off).
 As soon as two players are in town, each sees the other.
 
 > **Preview limits:** players on foot are not shown yet (when someone gets out, their trolley waits where they left it), everyone appears in the standard trolley (not their own
