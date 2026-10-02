@@ -189,9 +189,20 @@ each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* wo
   invisible and pass-through.
 * **Menus don't freeze the town**: with the pause menu, *Change Vehicle* or photo mode open, the world keeps running (as in
   the game's Xbox LIVE modes), so the other players keep driving through your town. Menu input never moves your vehicle.
-* **Changing vehicle**: while a player has *Change Vehicle* open, their trolley disappears for everyone (nobody can hit
-  it); it comes back where they are once they are done. The room panel shows what everyone is doing (in town, on foot,
-  in the pause menu, taking photos, changing vehicle, not in town).
+* **On foot, together**: get out of your vehicle and the others see your Banjo walking, running, jumping and spinning
+  the wrench where you really are, with the game's own animations. Wrench fights work: a hit knocks the other player's
+  Banjo down in their game.
+* **Changing vehicle**: while a player has *Change Vehicle* open, their vehicle stays where it is with the game's
+  "vehicle edit" icon over it; a player in Mumbo's garage shows the Mumbo pad icon where they left town. The room panel
+  shows what everyone is doing (in town, on foot, in the pause menu, taking photos, changing vehicle, in Mumbo's garage,
+  not in town).
+* **Rough-housing and flying**: vehicles really bump into each other (a ram shoves the other player's vehicle), flying
+  up next to someone no longer drags their vehicle up with you, torpedoes lock onto the player they were fired at in
+  every game, and parts that break off land where they should.
+* **Blueprints are safe**: a saved vehicle with parts a game doesn't have (for example ULTRA Parts) no longer crashes
+  *Your Blueprints*; the game shows its own warning and builds the vehicle without the missing parts. NB Multiplayer
+  also keeps a backup of every vehicle you save and puts back any that go missing. Leaving Mumbo's garage without
+  saving brings you back in the vehicle you built.
 * **The room's settings apply to everyone**: the host's time of day and the host's *all-unlocked save* setting are
   given to every player who starts their game in the room (a friend without a save or with the option off still starts
   with everything unlocked; their own save comes back afterwards).
@@ -210,6 +221,9 @@ each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* wo
   <img src="docs/images/23-coop-parts-off.png" alt="Parts broken off" width="49%">
 </p>
 <p align="center"><i>Fighting: a laser hit on the friend's trolley (left) is applied in the friend's own game, where parts of their vehicle break off (right).</i></p>
+
+<p align="center"><img src="docs/images/29-coop-on-foot.jpg" alt="The other player on foot" width="85%"></p>
+<p align="center"><i>On foot: the friend got out of their vehicle and walks around your town (bottom left), wrench and all.</i></p>
 
 <p align="center">
   <img src="docs/images/21-coop-weapons.png" alt="Every weapon in Mumbo's Motors" width="49%">
@@ -231,11 +245,11 @@ then goes straight to Showdown Town with every world, Act, vehicle and part unlo
 back when you turn the option off).
 As soon as two players are in town, each sees the other.
 
-> **Preview limits:** players on foot are not shown yet (when someone gets out, their vehicle waits where they left it),
-> ramming and spikes only hurt in each player's own game (the bump itself happens in both), the townsfolk crowds are each
-> game's own (they are random in every game), and crates, Acts and story progress are not shared yet.
-> *Build Vehicle* takes a player to Mumbo's garage, a separate level: they are not shown until they are back in town.
-> Everyone in a co-op room needs the same NB Multiplayer version (1.8 or newer).
+> **Preview limits:** ramming and spikes only hurt in each player's own game (the bump itself happens in both), the
+> townsfolk crowds are each game's own (they are random in every game), and crates, Acts and story progress are not
+> shared yet. *Build Vehicle* takes a player to Mumbo's garage, a separate level: the others see a Mumbo icon where they
+> left town until they are back.
+> Everyone in a co-op room needs the same NB Multiplayer version (1.9 or newer).
 
 ## Snowy Showdown Town
 
@@ -344,8 +358,9 @@ profile, saves and editions.
 | Friend stays in their own party | Make sure the host is already in the Xbox LIVE lobby; the friend can back out to the house menu and open Xbox LIVE again. |
 | PlayStation controller acts twice / as two players | DS4Windows or Steam's PlayStation support is also active: close them, or enable *Hide DS4 Controller* in DS4Windows. |
 | A player drops back to their own party while a match loads | Rare; start the match again. |
+| *"Your mods don't match the host's"* when joining | Your selected edition has other mods than the host's. **Match the host's mods** gets their mods (from the room) and switches you to the same edition; **Join anyway** keeps yours (the games may not join or may go out of sync). If the host changes mods while the room is open, starting the game again asks again. |
 | Co-op: the time of day or the all-unlocked save differs | Both are the room's settings and apply when a game starts in the room: close the game and press **Play solo** (or **Start the game** in the co-op room panel) to restart it with them. |
-| Co-op: I can't see my friend in town | Both of you must play the co-op edition (the room panel shows *Co-op (2 players)*) and be in Showdown Town; players on foot are not shown yet, so get into a vehicle. |
+| Co-op: I can't see my friend in town | Both of you must play the co-op edition (the room panel shows *Co-op (2 players)*) and be in Showdown Town; a player in Mumbo's garage shows as a Mumbo icon. |
 | Co-op: pressing X warps instead of firing | You are on a warp pad or at a world door: drive off it first. |
 | *"Your game files differ from the host's"* | The message says whose game folder is not the original game (and which files). Point **Settings > Game folder** at an unmodified copy of the game; your changes can become a mod with **Add a modded game folder**. If both folders are original, delete the edition in Mods & editions and join again. |
 | Editions take a lot of disk space | Editions share the game's files with your game folder (hard links), which needs the same drive. Since 1.7.1 editions go next to your game folder; **Settings > Disk space > Free up space** rebuilds older ones there. |
