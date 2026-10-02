@@ -337,6 +337,8 @@ profile, saves and editions.
 | Co-op: the time of day or the all-unlocked save differs | Both are the room's settings and apply when a game starts in the room: close the game and press **Play solo** (or **Start the game** in the co-op room panel) to restart it with them. |
 | Co-op: I can't see my friend in town | Both of you must play the co-op edition (the room panel shows *Co-op (2 players)*) and be in Showdown Town; players on foot are not shown yet, so get into a vehicle. |
 | Co-op: pressing X warps instead of firing | You are on a warp pad or at a world door: drive off it first. |
+| *"Your game files differ from the host's"* | The message says whose game folder is not the original game (and which files). Point **Settings > Game folder** at an unmodified copy of the game; your changes can become a mod with **Add a modded game folder**. If both folders are original, delete the edition in Mods & editions and join again. |
+| Editions take a lot of disk space | Editions share the game's files with your game folder (hard links), which needs the same drive. Since 1.7.1 editions go next to your game folder; **Settings > Disk space > Free up space** rebuilds older ones there. |
 | "These mods change the same things" | Two ticked mods change the same asset (the message names it), for example two mods that both edit the town's markers. Untick one of them. |
 | A friend on NB Multiplayer 1.5 or older sees no puppets | Co-op 1.2 needs NB Multiplayer 1.6: everyone in the room should update (About & updates). |
 | Something else | Send `%LOCALAPPDATA%\NB-Multiplayer\data\xenia.log` and `steam.log` from both PCs with an [issue](../../issues). |
