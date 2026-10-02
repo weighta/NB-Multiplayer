@@ -166,12 +166,21 @@ and confirm.
 ## Showdown Town co-op (preview)
 
 Play the **single-player game together**. Everyone plays their own save; NB Multiplayer shows the other players in your
-Showdown Town as a trolley with Banjo at the wheel, steered 30 times a second to where they really are. You can bump into
+Showdown Town in the vehicle they really drive, with Banjo at the wheel, steered to where they really are. You can bump into
 each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* work anywhere in town.
 
 * **Every vehicle part is unlocked** in the co-op edition, whatever each player's save has: build endlessly in Mumbo's
   Motors, each player in their own garage, at the same time.
-* **Fight each other**: weapon hits on the other player's trolley (lasers, egg guns, explosions) are sent to their game
+* **Their real vehicles**: each player's vehicle design (blocks, paint) is sent to the others, whose games rebuild it, so
+  you see the Mk. 6, the taxi or the helicopter your friend drives. After a *Change Vehicle* the new vehicle appears a few
+  seconds after they close the menu.
+* **Damage you can see**: damaged parts of the other players' vehicles show the game's own warning colours (green, orange,
+  red as the part gets weaker) and flash when hit. A part that breaks off their vehicle breaks off in every game, at the
+  same spot, and lies in the street.
+* **Police in sync**: the town's police follow the host's game, so every player sees the same units in the same places.
+* **Shots in every game**: eggs, grenades, torpedoes and lasers a player fires leave their vehicle in everyone's game
+  too (for show: only the real shot in the shooter's game deals the damage, so nobody is hit twice).
+* **Fight each other**: weapon hits on the other player's vehicle (lasers, egg guns, explosions) are sent to their game
   and applied there by the game itself, so their vehicle takes the damage and parts break off and fall into the street.
 * **The same time of day for everyone**: the host picks *Random, Morning, Midday, Afternoon* or *Night* in the co-op
   room panel, and every player's Showdown Town loads with it (a change applies the next time the town loads).
@@ -222,10 +231,11 @@ then goes straight to Showdown Town with every world, Act, vehicle and part unlo
 back when you turn the option off).
 As soon as two players are in town, each sees the other.
 
-> **Preview limits:** players on foot are not shown yet (when someone gets out, their trolley waits where they left it), everyone appears in the standard trolley (not their own
-> vehicle design), ramming and spikes only hurt in each player's own game (the bump itself happens in both), and crates, Acts and story progress are not shared yet.
+> **Preview limits:** players on foot are not shown yet (when someone gets out, their vehicle waits where they left it),
+> ramming and spikes only hurt in each player's own game (the bump itself happens in both), the townsfolk crowds are each
+> game's own (they are random in every game), and crates, Acts and story progress are not shared yet.
 > *Build Vehicle* takes a player to Mumbo's garage, a separate level: they are not shown until they are back in town.
-> Everyone in a co-op room needs the same NB Multiplayer version (1.7 or newer).
+> Everyone in a co-op room needs the same NB Multiplayer version (1.8 or newer).
 
 ## Snowy Showdown Town
 
