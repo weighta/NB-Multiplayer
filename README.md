@@ -175,6 +175,21 @@ each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* wo
   and applied there by the game itself, so their vehicle takes the damage and parts break off and fall into the street.
 * **The same time of day for everyone**: the host picks *Random, Morning, Midday, Afternoon* or *Night* in the co-op
   room panel, and every player's Showdown Town loads with it (a change applies the next time the town loads).
+* **Up to 4 players**: each player sees up to three others. Their trolleys appear only while they are really in Showdown
+  Town; anyone at the title screen, loading, in another world or in Mumbo's garage is not shown, and unused trolleys are
+  invisible and pass-through.
+* **Menus don't freeze the town**: with the pause menu, *Change Vehicle* or photo mode open, the world keeps running (as in
+  the game's Xbox LIVE modes), so the other players keep driving through your town. Menu input never moves your vehicle.
+* **Changing vehicle**: while a player has *Change Vehicle* open, their trolley disappears for everyone (nobody can hit
+  it); it comes back where they are once they are done. The room panel shows what everyone is doing (in town, on foot,
+  in the pause menu, taking photos, changing vehicle, not in town).
+* **The room's settings apply to everyone**: the host's time of day and the host's *all-unlocked save* setting are
+  given to every player who starts their game in the room (a friend without a save or with the option off still starts
+  with everything unlocked; their own save comes back afterwards).
+* **Restart any time**: if a player closes the game, **Play solo** (or **Start the game** in the co-op room panel) starts the
+  room's game again and co-op picks it up by itself.
+* **Smooth on real connections**: positions are predicted ahead by the measured network delay; in tests with 120 ms of
+  latency, jitter, 5 % packet loss and reordering the trolleys stayed within about 2 units of the real players.
 * **ULTRA Parts**: **Add co-op + ULTRA Parts** adds the ULTRA Engine, Fuel, Ammo and Wheels, the Plane Hull, the Tiki and
   the Fusion Reactor to Mumbo's Motors for everyone in the room. Showdown Town itself stays as it is.
 
@@ -209,6 +224,8 @@ As soon as two players are in town, each sees the other.
 
 > **Preview limits:** players on foot are not shown yet (when someone gets out, their trolley waits where they left it), everyone appears in the standard trolley (not their own
 > vehicle design), ramming and spikes only hurt in each player's own game (the bump itself happens in both), and crates, Acts and story progress are not shared yet.
+> *Build Vehicle* takes a player to Mumbo's garage, a separate level: they are not shown until they are back in town.
+> Everyone in a co-op room needs the same NB Multiplayer version (1.7 or newer).
 
 ## Snowy Showdown Town
 
@@ -317,6 +334,7 @@ profile, saves and editions.
 | Friend stays in their own party | Make sure the host is already in the Xbox LIVE lobby; the friend can back out to the house menu and open Xbox LIVE again. |
 | PlayStation controller acts twice / as two players | DS4Windows or Steam's PlayStation support is also active: close them, or enable *Hide DS4 Controller* in DS4Windows. |
 | A player drops back to their own party while a match loads | Rare; start the match again. |
+| Co-op: the time of day or the all-unlocked save differs | Both are the room's settings and apply when a game starts in the room: close the game and press **Play solo** (or **Start the game** in the co-op room panel) to restart it with them. |
 | Co-op: I can't see my friend in town | Both of you must play the co-op edition (the room panel shows *Co-op (2 players)*) and be in Showdown Town; players on foot are not shown yet, so get into a vehicle. |
 | Co-op: pressing X warps instead of firing | You are on a warp pad or at a world door: drive off it first. |
 | "These mods change the same things" | Two ticked mods change the same asset (the message names it), for example two mods that both edit the town's markers. Untick one of them. |
@@ -348,8 +366,11 @@ profile, saves and editions.
 * **Party joining** is automatic: the NB Xenia build befriends everyone in the room and accepts the host's invite as
   soon as you open Xbox LIVE.
 * **Showdown Town co-op** runs each player's own single-player game. NB Multiplayer reads each player's vehicle 30 times
-  a second and drives a stand-in vehicle (a "puppet" trolley of the co-op edition) to the same place in the other
-  games. A small executable mod logs weapon hits on puppets instead of applying them; NB Multiplayer sends them to that
+  a second (only while their game is in Showdown Town; the running level, loading screen and menus are read from the
+  game's memory) and steers a stand-in vehicle (a "puppet" trolley of the co-op edition) to the same place in the
+  other games about 120 times a second, predicted ahead by the network delay. Unused puppets are made invisible and
+  pass-through (draw flag and collision layer). Executable mods keep the world running in menus and give everyone the
+  room's time of day. A small executable mod logs weapon hits on puppets instead of applying them; NB Multiplayer sends them to that
   player's game, where the game's own damage code applies them (so parts break off naturally).
 * **Mods** are `.nbpatch` files: differences against the original game files, no game data. An edition applies a list
   of mods (its recipe) to a linked copy of your game; executable mods of several mods are merged into one `default.xex`.
