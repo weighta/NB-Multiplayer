@@ -30,6 +30,7 @@
 - [Joining a room](#joining-a-room)
 - [In the game](#in-the-game)
 - [Showdown Town co-op (preview)](#showdown-town-co-op-preview)
+- [Character Select](#character-select)
 - [Snowy Showdown Town](#snowy-showdown-town)
 - [Mods, editions and tweaks](#mods-editions-and-tweaks)
 - [Projects and NB Studio](#projects-and-nb-studio)
@@ -46,7 +47,8 @@
 | | |
 |---|---|
 | 🏁 **Online matches** | The game's own Xbox LIVE parties, races, sports and team games, up to 4 players. Friends land in the host's party automatically. |
-| 🏘️ **Showdown Town co-op** *(preview)* | Play the single-player game together: see each other in town, build and change vehicles at the same time, and fight: weapon hits break parts off the other player's vehicle. |
+| 🏘️ **Showdown Town co-op** *(preview)* | Play the single-player game together: see each other's real vehicles in town, get out and walk around together, build and change vehicles at the same time, and fight: wrenches, weapons and torpedoes, with parts breaking off. |
+| 🎭 **Character Select** | Play as Mumbo, Grunty, Kazooie, L.O.G., Tuxedo or Robot Banjo, and in Showdown Town as Trophy Thomas, Klungo, Humba Wumba, Piddles and more. In co-op the others see you as your character. |
 | 🔧 **Mods & editions** | A mod library with categories (maps, vehicle parts, gameplay, visuals, sounds, tweaks, co-op) and tick-box tweaks such as *Unlimited parts* or *All parts unlocked*. Tick mods, build an edition, play it alone or host it. Mods that change the same world are combined asset by asset. Friends get missing mods from the host when they join. |
 | 📁 **Your modded game** | Modded your game folder by hand in the past? **Add a modded game folder** turns it into a mod you can combine with others and play in co-op. |
 | ❄️ **Snowy Showdown Town** | The first official map mod: Showdown Town under snow, with falling snow everywhere, holly and red-and-green bunting, and winter light and skies for every time of day. Combines with co-op. |
@@ -189,7 +191,7 @@ each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* wo
   invisible and pass-through.
 * **Menus don't freeze the town**: with the pause menu, *Change Vehicle* or photo mode open, the world keeps running (as in
   the game's Xbox LIVE modes), so the other players keep driving through your town. Menu input never moves your vehicle.
-* **On foot, together**: get out of your vehicle and the others see your Banjo walking, running, jumping and spinning
+* **On foot, together**: get out of your vehicle and the others see your Banjo (or your [character](#character-select)) walking, running, jumping and spinning
   the wrench where you really are, with the game's own animations. Wrench fights work: a hit knocks the other player's
   Banjo down in their game.
 * **Changing vehicle**: while a player has *Change Vehicle* open, their vehicle stays where it is with the game's
@@ -249,7 +251,42 @@ As soon as two players are in town, each sees the other.
 > townsfolk crowds are each game's own (they are random in every game), and crates, Acts and story progress are not
 > shared yet. *Build Vehicle* takes a player to Mumbo's garage, a separate level: the others see a Mumbo icon where they
 > left town until they are back.
-> Everyone in a co-op room needs the same NB Multiplayer version (1.9 or newer).
+> Everyone in a co-op room needs the same NB Multiplayer version (2.0 or newer).
+
+## Character Select
+
+<p align="center"><img src="docs/images/42-characters.jpg" alt="Every playable character" width="100%"></p>
+<p align="center"><i>Every playable character in Showdown Town, beside Banjo.</i></p>
+
+Play as someone else. The **Character Select** mod adds 17 characters, each moving with their own animations: walking,
+running, jumping and the wrench spin.
+
+| Where | Characters |
+|---|---|
+| Everywhere | Tuxedo Banjo, Robot Banjo, Kazooie *(Banjo's backpack walking on its own; Kazooie pops out for the wrench spin)*, Mumbo Jumbo, Gruntilda, L.O.G. |
+| Showdown Town | Trophy Thomas, Klungo, Mr. Fit, Humba Wumba, Bottles, Boggy, King Jingaling, Jolly Dodger, Captain Blubber, Piddles, Jinjo *(elsewhere you are Banjo: their data only exists in the town)* |
+
+**1.** Use an edition with Character Select: **Add co-op edition** includes it, or tick *Character Select* in
+**Mods & editions** for any edition.
+
+**2.** On the **Play** page, pick your character in the **Play as** card.
+
+<p align="center"><img src="docs/images/40-play-as.png" alt="The Play as card" width="85%"></p>
+
+**3.** Play. The character applies the next time you enter a level: start or continue a game, or come back from Mumbo's
+garage. You can change it while the game runs.
+
+<p align="center"><img src="docs/images/41-playing-as.jpg" alt="Playing as Mumbo and as Trophy Thomas" width="100%"></p>
+<p align="center"><i>Playing as Mumbo (left) and as Trophy Thomas (right).</i></p>
+
+**In co-op** every player can be someone else, and the others see them as that character, driving and on foot:
+
+<p align="center"><img src="docs/images/43-coop-characters.jpg" alt="Co-op with characters" width="85%"></p>
+<p align="center"><i>The host plays as Mumbo (in the trolley); the friend got out as Trophy Thomas (in the street).</i></p>
+
+> Characters keep Banjo's size for collisions, so Grunty clips through things and small characters sit a little high
+> in the seat. A few characters have no animation for some of Banjo's actions and just stand (L.O.G. drives standing up).
+> Fat Banjo is not included: his model only exists in the intro.
 
 ## Snowy Showdown Town
 
