@@ -404,6 +404,8 @@ Limits: rooms for the game's own **Xbox LIVE** modes (online races and sports) s
 Xbox LIVE networking. reNut is young: the title screen can crash now and then (a timing race in the game's own code that
 reNut exposes); NB Multiplayer starts it again by itself when that happens.
 
+**A reNut release works for Vanilla**: a plain reNut (e.g. from [reNut's releases](https://github.com/masterspike52/reNut/releases)) plays Vanilla and editions with only world, texture, part or sound mods; NB Multiplayer gives it the game folder through `renut.cfg` (your own one is kept as `renut.cfg.before-nb`). Co-op, Character Select and the tweaks need the NB build below.
+
 **Getting reNut with NB's mod layer**: NB Multiplayer does not include reNut (it contains code translated from the game).
 Build it from reNut's source with the [renut-nb](renut-nb) kit: `apply.cmd`, then `build_renut.cmd` (the kit's README lists
 what you need: Visual Studio 2022, the ReXGlue SDK, Clang, and your own copy of the game).
