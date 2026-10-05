@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="../../releases/latest"><img alt="Download" src="https://img.shields.io/badge/download-latest%20release-f5a623?style=for-the-badge"></a>
+  <a href="src"><img alt="Source code" src="https://img.shields.io/badge/source-C%23%20%2F%20.NET%209-512bd4?style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -445,10 +446,28 @@ profile, saves and editions.
 
 ## Building from source
 
-* **The app** (`NBMultiplayer.exe`) is built from `src/NB.Multiplayer` in the
-  [NB Studio repository](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-)
-  (it shares NB.Core, the room server and the patch code):
-  `dotnet publish src/NB.Multiplayer -c Release -r win-x64 --self-contained -p:PublishSingleFile=true`.
+All the code is in this repository. Requirements: Windows 10/11 and the [.NET 9 SDK](https://dotnet.microsoft.com/download).
+
+```bash
+git clone https://github.com/weighta/NB-Multiplayer.git
+cd NB-Multiplayer
+dotnet build NBMultiplayer.sln -c Release
+```
+
+The app is `src/NB.Multiplayer/bin/Release/net9.0-windows/NBMultiplayer.exe`. A release build like the download:
+`dotnet publish src/NB.Multiplayer -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true`.
+
+| Folder | What it is |
+|---|---|
+| `src/NB.Core` | The shared library: every game file format (CAFF bundles, xcompress, textures, models, markers, scripts, Havok collision, XEX), workspaces, patches and mod merging, executable mods, the room server and co-op sync |
+| `src/NB.Multiplayer` | NB Multiplayer (WPF): rooms, Steam, editions, mod library, co-op, Character Select |
+| `src/NB.Studio` | NB Studio (WinForms + OpenGL): the world editor |
+| `src/NB.Cli` | `NB.Cli.exe`, the command-line tool used by the build scripts and tests |
+| `coop/`, `charsel/`, `snow/` | Recipes that rebuild the bundled mods from your own copy of the game (`sh coop/build.sh`, `sh charsel/build.sh`, `sh snow/build.sh`; they need NB.Cli built in Release and Python). Set `NB_GAME` to your untouched game folder. Their output in `*/dist/` is bundled into NB Multiplayer when present. |
+
+NB Studio, the world editor, lives in its own repository,
+[NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) (same NB.Core).
+
 * **The Xenia build**: apply [`xenia/nb-xenia-netplay.patch`](xenia/nb-xenia-netplay.patch) to
   AdrianCassar/xenia-canary `netplay_canary_experimental` at commit `6dbaa1f`; see [xenia/README.md](xenia/README.md).
 
