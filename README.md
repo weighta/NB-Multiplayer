@@ -35,6 +35,7 @@
 - [Snowy Showdown Town](#snowy-showdown-town)
 - [Mods, editions and tweaks](#mods-editions-and-tweaks)
 - [Projects and NB Studio](#projects-and-nb-studio)
+- [Playing with reNut (native PC version)](#playing-with-renut-native-pc-version)
 - [Updates](#updates)
 - [Troubleshooting](#troubleshooting)
 - [How it works](#how-it-works)
@@ -55,6 +56,7 @@
 | ❄️ **Snowy Showdown Town** | The first official map mod: Showdown Town under snow, with falling snow everywhere, holly and red-and-green bunting, and winter light and skies for every time of day. Combines with co-op. |
 | ⚙️ **ULTRA Parts** | A bundled vehicle-parts mod: ULTRA Engine, Fuel, Ammo and Wheels, Plane Hull, Tiki and Fusion Reactor in Mumbo's Motors. |
 | 🗂️ **Projects** | Your [NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) projects: NB Multiplayer installs and updates the editor, opens projects in it and turns them into mods. |
+| 🖥️ **reNut** *(experimental)* | Play with [reNut](https://github.com/masterspike52/reNut), the game recompiled to native PC code, instead of Xenia: same editions, mods, co-op and Character Select (Settings > Game engine). |
 | 💾 **All-unlocked save** | Skip the intro: start every game with everything unlocked (your own save is kept aside). |
 | 🌐 **Steam connection** | Rooms through Steam's relay network: share a room code, nothing to configure. Home network and direct internet work too. |
 | ⬆️ **Updates** | NB Multiplayer updates itself from this repository's releases (it asks first). |
@@ -375,6 +377,37 @@ your game for NB Studio to edit.
 
 <p align="center"><img src="docs/images/18-app-projects.png" alt="Projects" width="85%"></p>
 
+## Playing with reNut (native PC version)
+
+[reNut](https://github.com/masterspike52/reNut) is *Nuts & Bolts* recompiled to native PC code with its own renderer: no
+emulator. NB Multiplayer can start your games with it instead of Xenia: **Settings > Game engine > Launch with reNut**,
+then choose your `renut.exe`.
+
+<p align="center"><img src="docs/images/44-game-engine.png" alt="Settings: Game engine" width="75%"></p>
+
+Everything works the same:
+
+- **Editions and mods**: reNut reads the edition's game folder, so world, texture, part and sound mods work as they are.
+- **Game-code mods** (co-op, Character Select, Change Vehicle in town, the tick-box tweaks): reNut needs to be built with
+  **NB's mod layer** ([renut-nb](renut-nb)), which runs a mod's patched code wherever it is in the game's memory. One
+  build plays every edition, mods on or off. For your own game folder and NB Studio projects NB Multiplayer writes the
+  mods into the running game, like Xenia's patch files.
+- **Co-op and Character Select**: they connect to reNut exactly like to Xenia. Tested with two players in one room:
+  each sees the other's vehicle and character, driving and on foot, with the room's time of day.
+- **Saves and blueprints**: in `data\renut` (reNut's profile); the all-unlocked save and the blueprint vault work there too.
+- **Controllers**: reNut's own (Xbox and PlayStation controllers through SDL, or keyboard and mouse).
+
+<p align="center"><img src="docs/images/45-renut-coop.jpg" alt="Showdown Town co-op in reNut" width="85%"></p>
+<p align="center"><i>Co-op in reNut: the host as Mumbo and the friend as Trophy Thomas, at night; the friend got out and walks (right).</i></p>
+
+Limits: rooms for the game's own **Xbox LIVE** modes (online races and sports) still start in Xenia, because reNut has no
+Xbox LIVE networking. reNut is young: the title screen can crash now and then (a timing race in the game's own code that
+reNut exposes); NB Multiplayer starts it again by itself when that happens.
+
+**Getting reNut with NB's mod layer**: NB Multiplayer does not include reNut (it contains code translated from the game).
+Build it from reNut's source with the [renut-nb](renut-nb) kit: `apply.cmd`, then `build_renut.cmd` (the kit's README lists
+what you need: Visual Studio 2022, the ReXGlue SDK, Clang, and your own copy of the game).
+
 ## Updates
 
 NB Multiplayer checks this repository's releases when it starts (you can turn that off in Settings). When a new version
@@ -463,6 +496,7 @@ The app is `src/NB.Multiplayer/bin/Release/net9.0-windows/NBMultiplayer.exe`. A 
 | `src/NB.Multiplayer` | NB Multiplayer (WPF): rooms, Steam, editions, mod library, co-op, Character Select |
 | `src/NB.Studio` | NB Studio (WinForms + OpenGL): the world editor |
 | `src/NB.Cli` | `NB.Cli.exe`, the command-line tool used by the build scripts and tests |
+| `renut-nb/` | NB's mod layer for reNut (interpreter, virtual controller, launch options, a game fix) and its build scripts |
 | `coop/`, `charsel/`, `snow/` | Recipes that rebuild the bundled mods from your own copy of the game (`sh coop/build.sh`, `sh charsel/build.sh`, `sh snow/build.sh`; they need NB.Cli built in Release and Python). Set `NB_GAME` to your untouched game folder. Their output in `*/dist/` is bundled into NB Multiplayer when present. |
 
 NB Studio, the world editor, lives in its own repository,
