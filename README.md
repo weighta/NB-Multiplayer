@@ -30,7 +30,7 @@
 - [Hosting a room](#hosting-a-room)
 - [Joining a room](#joining-a-room)
 - [In the game](#in-the-game)
-- [Showdown Town co-op (preview)](#showdown-town-co-op-preview)
+- [Showdown Town co-op](#showdown-town-co-op)
 - [Character Select](#character-select)
 - [Snowy Showdown Town](#snowy-showdown-town)
 - [Mods, editions and tweaks](#mods-editions-and-tweaks)
@@ -49,7 +49,7 @@
 | | |
 |---|---|
 | 🏁 **Online matches** | The game's own Xbox LIVE parties, races, sports and team games, up to 4 players. Friends land in the host's party automatically. |
-| 🏘️ **Showdown Town co-op** *(preview)* | Play the single-player game together: see each other's real vehicles in town, get out and walk around together, build and change vehicles at the same time, and fight: wrenches, weapons and torpedoes, with parts breaking off. |
+| 🏘️ **Showdown Town co-op** | Play the single-player game together: see each other's real vehicles in town, get out and walk around together, build and change vehicles at the same time, and fight: wrenches, weapons and torpedoes, with parts breaking off. |
 | 🎭 **Character Select** | Play as Mumbo, Grunty, Kazooie, L.O.G., Tuxedo or Robot Banjo, and in Showdown Town as Trophy Thomas, Klungo, Humba Wumba, Piddles and more. In co-op the others see you as your character. |
 | 🔧 **Mods & editions** | A mod library with categories (maps, vehicle parts, gameplay, visuals, sounds, tweaks, co-op) and tick-box tweaks such as *Unlimited parts* or *All parts unlocked*. Tick mods, build an edition, play it alone or host it. Mods that change the same world are combined asset by asset. Friends get missing mods from the host when they join. |
 | 📁 **Your modded game** | Modded your game folder by hand in the past? **Add a modded game folder** turns it into a mod you can combine with others and play in co-op. |
@@ -93,7 +93,7 @@ The **Play** page tells you what's missing. Open **Settings**:
 2. **Game folder**: click **Browse...** and choose the folder that contains `default.xex` and `Bundle`.
    NB Multiplayer only reads it; it never changes your game files.
 3. *(Optional)* **Start every game with the all-unlocked save**: no intro, every world, Act, vehicle and part unlocked
-   (see [Showdown Town co-op](#showdown-town-co-op-preview)).
+   (see [Showdown Town co-op](#showdown-town-co-op)).
 
 Your profile and saves are stored in `%LOCALAPPDATA%\NB-Multiplayer` (Settings → *Open data folder*), separate from any
 other Xenia you use.
@@ -168,7 +168,10 @@ and confirm.
 
 <p align="center"><img src="docs/images/11-game-loading.png" alt="Vehicle choice" width="75%"></p>
 
-## Showdown Town co-op (preview)
+**Matchmaking:** **RANKED MATCH** and **PLAYER MATCH** work in an NB room too. The game normally waits for at least 4
+players; in an NB room a lobby of 2 or more starts about 20 seconds after it opens (the game picks the race or sport).
+
+## Showdown Town co-op
 
 Play the **single-player game together**. Everyone plays their own save; NB Multiplayer shows the other players in your
 Showdown Town in the vehicle they really drive, with Banjo at the wheel, steered to where they really are. You can bump into
@@ -183,12 +186,19 @@ each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* wo
   red as the part gets weaker) and flash when hit. A part that breaks off their vehicle breaks off in every game, at the
   same spot, and lies in the street.
 * **Police in sync**: the town's police follow the host's game, so every player sees the same units in the same places.
+* **Photos**: the pause menu's photo camera takes real pictures (they came out black before 2.2).
 * **Shots in every game**: eggs, grenades, torpedoes and lasers a player fires leave their vehicle in everyone's game
   too (for show: only the real shot in the shooter's game deals the damage, so nobody is hit twice).
 * **Fight each other**: weapon hits on the other player's vehicle (lasers, egg guns, explosions) are sent to their game
   and applied there by the game itself, so their vehicle takes the damage and parts break off and fall into the street.
 * **The same time of day for everyone**: the host picks *Random, Morning, Midday, Afternoon* or *Night* in the co-op
   room panel, and every player's Showdown Town loads with it (a change applies the next time the town loads).
+* **Your characters, everywhere in town**: each player keeps their [character](#character-select) after trips to the
+  worlds, Acts and the garage (characters that only exist in town are Banjo inside the game worlds and come back in town).
+* **On the minimap**: the other players show on your town minimap as the game's own player marker.
+* **Your vehicle is yours**: nobody can get into another player's vehicle, even when its seat is empty.
+* **Parts you recall or edit**: parts you call back with **RB** and changes you make with **B** (vehicle edit) in town
+  show on everyone's screen.
 * **Up to 4 players**: each player sees up to three others. Their trolleys appear only while they are really in Showdown
   Town; anyone at the title screen, loading, in another world or in Mumbo's garage is not shown, and unused trolleys are
   invisible and pass-through.
@@ -211,6 +221,8 @@ each other, town vehicles break apart, and *Change Vehicle* / *Build Vehicle* wo
 * **The room's settings apply to everyone**: the host's time of day and the host's *all-unlocked save* setting are
   given to every player who starts their game in the room (a friend without a save or with the option off still starts
   with everything unlocked; their own save comes back afterwards).
+* **The host leaving**: when the host closes the room (or their PC stops answering), everyone else sees **Host
+  disconnected** and is asked whether to close their game.
 * **Restart any time**: if a player closes the game, **Play solo** (or **Start the game** in the co-op room panel) starts the
   room's game again and co-op picks it up by itself.
 * **Smooth on real connections**: positions are predicted ahead by the measured network delay; in tests with 120 ms of
@@ -244,13 +256,14 @@ Friends join with the room code as usual. The room panel lists everyone who is s
 
 <p align="center"><img src="docs/images/17-coop-room.png" alt="Co-op room" width="85%"></p>
 
-**3.** In the game: **SINGLE PLAYER** → load your save, or start a new game and play until you reach Showdown Town.
+**3.** In the game: **SINGLE PLAYER** → **RESUME SAVED GAME** (your own adventure), or **START NEW GAME** and play until you
+reach Showdown Town. NB Multiplayer shows these steps under **How to play together** when you host or join.
 No save yet, or want everything unlocked? **Settings > Start every game with the all-unlocked save**: **RESUME SAVED GAME**
 then goes straight to Showdown Town with every world, Act, vehicle and part unlocked (your own save is set aside and comes
 back when you turn the option off).
 As soon as two players are in town, each sees the other.
 
-> **Preview limits:** ramming and spikes only hurt in each player's own game (the bump itself happens in both), the
+> **Limits:** ramming and spikes only hurt in each player's own game (the bump itself happens in both), the
 > townsfolk crowds are each game's own (they are random in every game), and crates, Acts and story progress are not
 > shared yet. *Build Vehicle* takes a player to Mumbo's garage, a separate level: the others see a Mumbo icon where they
 > left town until they are back.
@@ -342,7 +355,10 @@ mods, press **Build an edition**, then host it or play it alone with **Play solo
 * **Built-in tweaks**: the game-executable mods researched for NB Studio are tick boxes: *Unlimited parts (2000),
   Bigger world edge, No world-edge reset, Bigger garage, Longer draw distance, Change vehicles in town, Breakable town
   vehicles, Jumping AI vehicles, All parts unlocked, Developer main menu* and more. They combine with each other and
-  with any mod.
+  with any mod. New in 2.2: *Planes fly in town* (propellers and jets push in Showdown Town), *No ceiling* (no invisible
+  roof over town), *Stable fast vehicles* (no wild mid-air spinning with super engines), *Unlimited part quantity*
+  (9999 of every part you own) and *L.O.G.'s Choice unlock* (CHOOSE VEHICLE unlocks in a L.O.G.'s Choice game once you
+  have its TT trophy).
 * **Add a mod (.nbpatch)**: mods made with
   [NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) (or by friends) go into
   your mod library.
@@ -400,9 +416,11 @@ Everything works the same:
 <p align="center"><img src="docs/images/45-renut-coop.jpg" alt="Showdown Town co-op in reNut" width="85%"></p>
 <p align="center"><i>Co-op in reNut: the host as Mumbo and the friend as Trophy Thomas, at night; the friend got out and walks (right).</i></p>
 
+reNut starts in a window: **F11** or **Alt+Enter** switch to full screen and back (**Alt+F4** closes the game).
+
 Limits: rooms for the game's own **Xbox LIVE** modes (online races and sports) still start in Xenia, because reNut has no
-Xbox LIVE networking. reNut is young: the title screen can crash now and then (a timing race in the game's own code that
-reNut exposes); NB Multiplayer starts it again by itself when that happens.
+Xbox LIVE networking. reNut is young: the title screen can still crash now and then (a rarer timing race in the game's own code; the
+intro-movie sound crash is fixed); NB Multiplayer starts it again by itself when that happens.
 
 **A reNut release works for Vanilla**: a plain reNut (e.g. from [reNut's releases](https://github.com/masterspike52/reNut/releases)) plays Vanilla and editions with only world, texture, part or sound mods; NB Multiplayer gives it the game folder through `renut.cfg` (your own one is kept as `renut.cfg.before-nb`). Co-op, Character Select and the tweaks need the NB build below.
 

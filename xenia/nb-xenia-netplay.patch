@@ -418,12 +418,40 @@ index 06a5539..97c7656 100644
  
    curl_easy_setopt(curl_handle, CURLOPT_URL, endpoint.c_str());
  
+diff --git a/src/xenia/kernel/kernel_state.cc b/src/xenia/kernel/kernel_state.cc
+index db23c36..b9bedf9 100644
+--- a/src/xenia/kernel/kernel_state.cc
++++ b/src/xenia/kernel/kernel_state.cc
+@@ -42,6 +42,15 @@ DECLARE_string(cl);
+ 
+ DECLARE_int32(network_mode);
+ 
++namespace xe {
++namespace kernel {
++namespace nboverlay {
++// nb_overlay.cc (declared here: nb_overlay.h pulls in WinSock headers)
++void ApplyTitleFixes(Memory* memory, uint32_t title_id);
++}  // namespace nboverlay
++}  // namespace kernel
++}  // namespace xe
++
+ namespace xe {
+ namespace kernel {
+ 
+@@ -686,6 +695,7 @@ X_RESULT KernelState::FinishLoadingUserModule(
+   module->Dump();
+   emulator_->patcher()->ApplyPatchesForTitle(memory_, module->title_id(),
+                                              module->hash());
++  nboverlay::ApplyTitleFixes(memory_, module->title_id());   // NB rooms
+   emulator_->on_patch_apply();
+   if (module->xex_module()) {
+     module->xex_module()->Precompile();
 diff --git a/src/xenia/kernel/nb_overlay.cc b/src/xenia/kernel/nb_overlay.cc
 new file mode 100644
-index 0000000..850189e
+index 0000000..ca3d09a
 --- /dev/null
 +++ b/src/xenia/kernel/nb_overlay.cc
-@@ -0,0 +1,403 @@
+@@ -0,0 +1,451 @@
 +/**
 + ******************************************************************************
 + * Xenia : Xbox 360 Emulator Research Project                                 *
@@ -450,6 +478,7 @@ index 0000000..850189e
 +#include "xenia/kernel/xam/friends_manager.h"
 +#include "xenia/kernel/xnet.h"
 +#include "xenia/emulator.h"
++#include "xenia/memory.h"
 +#include "xenia/ui/imgui_host_notification.h"
 +
 +#include "third_party/libcurl/include/curl/curl.h"
@@ -482,6 +511,11 @@ index 0000000..850189e
 +DEFINE_string(nb_room_code, "",
 +              "NB multiplayer: room code shown in the on-screen notices.",
 +              "Live");
++DEFINE_bool(nb_room_matchmaking, true,
++            "NB multiplayer: Nuts & Bolts Ranked/Player Match lobbies start "
++            "with 2 or more players after 20 s (the game waits for 4 of 8 "
++            "players and 40 s).",
++            "Live");
 +DECLARE_string(api_address);
 +
 +namespace xe {
@@ -824,15 +858,57 @@ index 0000000..850189e
 +  }).detach();
 +}
 +
++void ApplyTitleFixes(Memory* memory, uint32_t title_id) {
++  if (!Enabled() || !memory) return;
++  struct Word {
++    uint32_t address, original, patched;
++    const char* what;
++  };
++  // Banjo-Kazooie: Nuts & Bolts, auto-matchmaking STATE_WAITING_FOR_OTHERS
++  // (0x824FA280): the session owner starts the match when the players still
++  // missing (8 slots - players) are <= an allowance that is 0, then 2 after
++  // T = 40 s, then 4 after T + 15 s; at T + 30 s it gives up and searches
++  // again. A room of 2-3 friends never got a match. Same words as NB.Core
++  // ExePatches "small-room-matchmaking".
++  static const Word kNutsAndBoltsMatchmaking[] = {
++      {0x824F406C, 0x616B9C40, 0x616B4E20,
++       "T = 20 s (was 40 s) on entering STATE_WAITING_FOR_OTHERS"},
++      {0x824FA4F8, 0x3BA00002, 0x3BA00006,
++       "allowance after T: 6 missing (2 players of 8) instead of 2"},
++      {0x824FA434, 0x3BA00004, 0x3BA00006,
++       "allowance after T + 15 s: 6 missing instead of 4"},
++  };
++  if (title_id != 0x4D5307ED || !cvars::nb_room_matchmaking) return;
++  for (const Word& w : kNutsAndBoltsMatchmaking) {
++    uint8_t* p = memory->TranslateVirtual(w.address);
++    if (!p || xe::load_and_swap<uint32_t>(p) != w.original) {
++      XELOGW("nboverlay: matchmaking fix skipped: {:08X} is not {:08X}",
++             w.address, w.original);
++      return;   // another build or mod: change nothing
++    }
++  }
++  for (const Word& w : kNutsAndBoltsMatchmaking) {
++    xe::BaseHeap* heap = memory->LookupHeap(w.address);
++    if (!heap) continue;
++    uint32_t old_protect = 0;
++    heap->QueryProtect(w.address, &old_protect);
++    heap->Protect(w.address, 4, kMemoryProtectRead | kMemoryProtectWrite);
++    xe::store_and_swap<uint32_t>(memory->TranslateVirtual(w.address),
++                                 w.patched);
++    heap->Protect(w.address, 4, old_protect);
++  }
++  XELOGI("nboverlay: small-room matchmaking on (2+ players start after 20 s)");
++}
++
 +}  // namespace nboverlay
 +}  // namespace kernel
 +}  // namespace xe
 diff --git a/src/xenia/kernel/nb_overlay.h b/src/xenia/kernel/nb_overlay.h
 new file mode 100644
-index 0000000..7c1c24d
+index 0000000..0429113
 --- /dev/null
 +++ b/src/xenia/kernel/nb_overlay.h
-@@ -0,0 +1,95 @@
+@@ -0,0 +1,102 @@
 +/**
 + ******************************************************************************
 + * Xenia : Xbox 360 Emulator Research Project                                 *
@@ -880,6 +956,7 @@ index 0000000..7c1c24d
 +#endif
 +
 +namespace xe {
++class Memory;
 +namespace kernel {
 +namespace nboverlay {
 +
@@ -922,6 +999,12 @@ index 0000000..7c1c24d
 +void StartControl();
 +// Called when this console creates an Xbox LIVE group lobby (party) session.
 +void OnLobbyCreated();
++
++// Called after a title module is loaded and its patch files are applied
++// (before it is precompiled). In NB rooms (nb_overlay) it applies game fixes
++// for room play, e.g. small-room matchmaking for Banjo-Kazooie: Nuts & Bolts
++// (cvar nb_room_matchmaking). Every word is checked against the original.
++void ApplyTitleFixes(Memory* memory, uint32_t title_id);
 +
 +}  // namespace nboverlay
 +}  // namespace kernel
