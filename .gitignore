@@ -2,3 +2,6 @@ bin/
 obj/
 .vs/
 *.user
+
+# NB Studio has its own repository; never commit a copy of it here
+src/NB.Studio/
