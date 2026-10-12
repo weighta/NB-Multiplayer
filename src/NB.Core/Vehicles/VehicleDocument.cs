@@ -38,10 +38,22 @@ public sealed class VehicleDocument
     /// </summary>
     public Blueprint ToBlueprint(PartCatalog? catalog = null, bool unchangedKeepsSource = true)
     {
-        if (unchangedKeepsSource && !Dirty && Name == Source.Name) return Source.Clone();
+        int sx = Parts.Count == 0 ? 0 : Math.Min(0, Parts.Min(p => p.X)), sy = Parts.Count == 0 ? 0 : Math.Min(0, Parts.Min(p => p.Y)), sz = Parts.Count == 0 ? 0 : Math.Min(0, Parts.Min(p => p.Z));
+        // the parts' footprints must not reach below cell 0 either: Super Wheels (and big propellers) fill the cell under
+        // their origin, and a vehicle whose wheel footprint lies at y = -1 hangs the game when it is spawned (the
+        // allocator loops; seen with a chassis template + Super Wheels on the bottom row). The game itself never saves
+        // such a vehicle: it keeps the whole footprint at 0 or above.
+        if (catalog != null)
+            foreach (var p in Parts)
+            {
+                var (mn, _) = Box(p, catalog[p.B.Part]);
+                if (mn.X == int.MaxValue) continue;
+                sx = Math.Min(sx, mn.X); sy = Math.Min(sy, mn.Y); sz = Math.Min(sz, mn.Z);
+            }
+        // unchanged (and nothing to move up): the source's bytes as they were
+        if (unchangedKeepsSource && !Dirty && Name == Source.Name && sx == 0 && sy == 0 && sz == 0) return Source.Clone();
         var bp = Source.Clone();
         bp.Blocks.Clear();
-        int sx = Parts.Count == 0 ? 0 : Math.Min(0, Parts.Min(p => p.X)), sy = Parts.Count == 0 ? 0 : Math.Min(0, Parts.Min(p => p.Y)), sz = Parts.Count == 0 ? 0 : Math.Min(0, Parts.Min(p => p.Z));
         foreach (var p in Parts)
         {
             int x = p.X - sx, y = p.Y - sy, z = p.Z - sz;
@@ -144,6 +156,11 @@ public sealed class VehicleDocument
         {
             foreach (var g in Parts.Where(p => cat[p.B.Part] == null).GroupBy(p => p.B.Part))
                 res.Add(new($"Unknown part 0x{g.Key:X8} ({g.Count()}×): not in this workspace — the game shows a Disc Read Error for blueprints with unknown parts.", g.First(), true));
+            // stored cells must cover the parts' whole footprint (Super Wheels fill the cell under their origin): saves of NB
+            // Studio before 1.23.4 could put that cell at -1, and the game froze spawning them. Saving moves the vehicle up.
+            var below = Parts.Where(p => Box(p, cat[p.B.Part]) is var b && b.Min.X != int.MaxValue && (b.Min.X < 0 || b.Min.Y < 0 || b.Min.Z < 0)).ToList();
+            if (below.Count > 0 && !Dirty && Parts.Min(p => Math.Min(p.X, Math.Min(p.Y, p.Z))) >= 0)
+                res.Add(new($"{below.Count} part(s) reach past the vehicle's first cell row (e.g. {cat[below[0].B.Part]?.Name}): as stored, the game freezes when it spawns this vehicle. Saving it again (Save, or Save As) moves the vehicle up so it spawns.", below[0], false));
             if (!Parts.Any(p => cat[p.B.Part]?.Class == "objDefId_vehicleBlockSeat"))
                 res.Add(new("No seat: nobody can drive this vehicle.", null, false));
             else if (!Parts.Any(p => cat[p.B.Part] is { } i && i.Class == "objDefId_vehicleBlockSeat" && (i.Key.StartsWith("seats_") || i.Variant.EndsWith("ai"))))
