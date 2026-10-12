@@ -1454,6 +1454,17 @@ public static class ExePatches
     };
 
     // ---- mods agent 2026-10-05: end ----
+    public static readonly ExeMod Fps60 = new(
+        "fps-60",
+        "60 FPS",
+        "The game asks for a presentation interval of 2 vsyncs (30 fps) when it sets up the display (0x8228A838 li r11,2 in the " +
+        "D3D present-parameters setup). It asks for 1 instead, so the game runs at 60 fps. Game logic uses the frame time " +
+        "(dt 0.0335 -> 0.0161 s), so speeds and timers stay real-time. Same change as the community Xenia patch '60 FPS' " +
+        "(Margen67: be8 0x8228A83B = 1). NB Multiplayer applies it as a launch option (Play > 60 FPS), in memory, never baked.",
+        "Xenia 2026-10-12: frame ticks 30.0/s -> 58.9-60.0/s; trolley from rest with RT held covered 62.9 u in 4 s at 30 fps and " +
+        "62.5 u at 60 fps (top speed 18.4 / 18.6 u/s).",
+        new[] { new ExeWord(0x8228A838, 0x39600002, 0x39600001, "li r11,1 (was li r11,2): present every vsync = 60 fps") });
+
     /// <summary>
     /// Vehicle part limit P (251..2000) — the same patch as <see cref="VehiclePartLimit400"/> with P in the three limit
     /// compares, the preview loader clamp, and the two stack frames that hold one u32 per block grown by align16(4·(P−250))
@@ -1561,7 +1572,7 @@ public static class ExePatches
 
     public static string FamilyOf(string id) => id.StartsWith("vehicle-part-limit") ? "vehicle-part-limit" : id.StartsWith("garage-build-area") ? "garage-build-area" : "";
 
-    public static readonly IReadOnlyList<ExeMod> All = new[] { ChangeVehicleInTown, TownVehiclesNormalRules, AiSpringTimer, TownAiRestartOnChangeVehicle, DeveloperMainMenu, DeveloperAllParts, WorldBounds2048, NoEscapeReset, TownNpcPathGuard, CoopRemoteDamage, CoopSharedTime, CoopWorldRuns, CoopRemoteVehicle, CoopProjectiles, CoopOnFoot, TownGarageReturnVehicle, UnknownPartsSafe, SmallRoomMatchmaking, CharacterSelect, SnowFollowsCamera, DrawDistanceX4, PhotoCameraUnlimited, PauseOpensPhotos, GarageBuildArea31, VehiclePartLimit400, TownFlightThrust, UnlimitedPartQuantity, LogsChoiceUnlock, VehicleSpinLimit, TownNoCeiling };
+    public static readonly IReadOnlyList<ExeMod> All = new[] { ChangeVehicleInTown, TownVehiclesNormalRules, AiSpringTimer, TownAiRestartOnChangeVehicle, DeveloperMainMenu, DeveloperAllParts, WorldBounds2048, NoEscapeReset, TownNpcPathGuard, CoopRemoteDamage, CoopSharedTime, CoopWorldRuns, CoopRemoteVehicle, CoopProjectiles, CoopOnFoot, TownGarageReturnVehicle, UnknownPartsSafe, SmallRoomMatchmaking, CharacterSelect, SnowFollowsCamera, DrawDistanceX4, PhotoCameraUnlimited, PauseOpensPhotos, GarageBuildArea31, VehiclePartLimit400, TownFlightThrust, UnlimitedPartQuantity, LogsChoiceUnlock, VehicleSpinLimit, TownNoCeiling, Fps60 };
 
     /// <summary>
     /// The mods NB Studio ticks in every NEW workspace (File > Settings can change the list; existing workspaces and
@@ -1632,6 +1643,29 @@ public static class ExePatches
     {
         [0x66DC9721DEB966A8] = 0xC03916823ADAC91B,   // retail default.xex (verified: Xenia Canary c332733 log)
     };
+
+    /// <summary>
+    /// Xenia's module hash of any default.xex of this game (retail or with executable mods baked in): Xenia hashes the code
+    /// pages after its loader rewrote the 1052 import thunks (0x82D0xxxx); the rewritten words were read once from a running
+    /// retail game (Data/xenia_import_thunks.bin: address, original, value) and are written into a copy of the image here.
+    /// Verified: retail -> C03916823ADAC91B; retail + town-vehicles-normal-rules -> EA26F9C5A7E95E38 (both as logged by Xenia).
+    /// Null when the image is not this game (a thunk word differs from the retail original).
+    /// </summary>
+    public static ulong? XeniaModuleHashOfImage(byte[] xex, byte[] image, uint imageBase = 0x82000000)
+    {
+        using var s = typeof(ExePatches).Assembly.GetManifestResourceStream("xenia_import_thunks.bin");
+        if (s == null) return null;
+        var t = new byte[s.Length]; s.ReadExactly(t);
+        var img = (byte[])image.Clone();
+        for (int i = 0; i + 12 <= t.Length; i += 12)
+        {
+            uint a = BE.U32(t, i), orig = BE.U32(t, i + 4), v = BE.U32(t, i + 8);
+            long o = a - (long)imageBase;
+            if (o < 0 || o + 4 > img.Length || BE.U32(img, (int)o) != orig) return null;
+            BE.W32(img, (int)o, v);
+        }
+        return XeniaModuleHash(xex, img);
+    }
 
     /// <summary>The module hash to put in a Xenia patch file: known table first, then the last "Module Hash:" in xenia.log.</summary>
     public static ulong? ResolveXeniaHash(ulong imageHash, string? xeniaDir)

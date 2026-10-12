@@ -35,6 +35,8 @@ public sealed class AppSettings
     /// <summary>The reNut build to use (renut.exe built with NB's mod layer); "" = renut\renut.exe next to NB Multiplayer.</summary>
     public string RenutPath { get; set; } = "";
     public bool UseRenut => string.Equals(Engine, "renut", StringComparison.OrdinalIgnoreCase);
+    /// <summary>Play > "60 FPS": every game NB Multiplayer starts in Xenia runs at 60 fps (exe tweak fps-60, in memory).</summary>
+    public bool Fps60 { get; set; }
     /// <summary>"Export to reNut mods folder": the mods folder of a reNut that loads .nbpatch files (chosen once by the player;
     /// "" = not chosen yet). NB Multiplayer writes there only when the player exports to it.</summary>
     public string RenutModsFolder { get; set; } = "";

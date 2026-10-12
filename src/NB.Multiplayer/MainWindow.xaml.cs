@@ -115,6 +115,7 @@ public partial class MainWindow : Window
         UpdatesCheck.IsChecked = S.CheckForUpdates;
         _loadingSettings = true;
         AllUnlockedCheck.IsChecked = S.UseAllUnlockedSave;
+        Fps60Check.IsChecked = S.Fps60;
         (S.UseRenut ? EngineRenut : EngineXenia).IsChecked = true;
         _loadingSettings = false;
         RefreshEngine();
@@ -1257,6 +1258,10 @@ public partial class MainWindow : Window
         var why = Renut.Problem(S);
         RenutStatus.Foreground = (Brush)FindResource(why == null ? (S.UseRenut ? "Good" : "Sub") : (S.UseRenut ? "Bad" : "Sub"));
         bool layer = exe != null && Renut.HasNbLayer(exe);
+        Fps60Check.IsEnabled = !S.UseRenut;
+        Fps60Note.Text = S.UseRenut
+            ? "60 FPS is a Xenia option: reNut runs the recompiled game code and does not apply it (Xbox LIVE rooms, which always start in Xenia, use it)."
+            : "Xenia games run at 60 frames per second instead of 30 (solo, rooms and every edition; your game files are not changed). Speeds and timers stay the same. In an Xbox LIVE room everyone should use the same setting.";
         RenutStatus.Text = why ?? (layer
             ? "reNut with NB's mod layer: co-op rooms and solo games start in reNut, with all your mods."
             : "This reNut has no NB mod layer (like the reNut releases): Vanilla and editions with only world, texture, part or sound mods play in it. " +
@@ -1264,6 +1269,12 @@ public partial class MainWindow : Window
     }
 
     bool _loadingSettings;
+
+    void Fps60_Changed(object sender, RoutedEventArgs e)
+    {
+        if (_loadingSettings) return;
+        S.Fps60 = Fps60Check.IsChecked == true; S.Save();
+    }
 
     void AllUnlocked_Changed(object sender, RoutedEventArgs e)
     {

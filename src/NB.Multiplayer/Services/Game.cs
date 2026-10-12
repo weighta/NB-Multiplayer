@@ -36,8 +36,8 @@ public static class GameLauncher
         KeepBlueprints();
         // editions carry their tweaks in their own default.xex (plus the parts safety, added here to older editions); the
         // player's own game folder (Vanilla) is never changed: Xenia applies the safety in memory
-        if (edition.IsVanilla) SetProjectTweaks(Path.Combine(edition.GameDir, "default.xex"), AlwaysOn);
-        else { Editions.EnsureSafety(edition.GameDir); SetProjectTweaks(null, null); }
+        if (edition.IsVanilla) SetProjectTweaks(Path.Combine(edition.GameDir, "default.xex"), AlwaysOn.Concat(LaunchOptions(s)).ToList());
+        else { Editions.EnsureSafety(edition.GameDir); SetProjectTweaks(Path.Combine(edition.GameDir, "default.xex"), LaunchOptions(s)); }
         Saves.PrepareLaunch(allUnlocked ?? s.UseAllUnlockedSave, forRoom: allUnlocked == true && !s.UseAllUnlockedSave);
         var args = new List<string>(XeniaGameOptions);
         var extra = Environment.GetEnvironmentVariable("NB_XENIA_EXTRA");   // testing: extra Xenia options
@@ -81,7 +81,7 @@ public static class GameLauncher
         var xex = Path.Combine(gameDir, "default.xex");
         KeepBlueprints();
         Editions.EnsureSafety(gameDir);   // only NB Multiplayer's own editions are changed
-        SetProjectTweaks(xex, (projectExeMods ?? Array.Empty<string>()).Concat(AlwaysOn).Distinct().ToList());
+        SetProjectTweaks(xex, (projectExeMods ?? Array.Empty<string>()).Concat(AlwaysOn).Concat(LaunchOptions(s)).Distinct().ToList());
         Saves.PrepareLaunch(s.UseAllUnlockedSave);
         var args = new List<string>(XeniaGameOptions);
         var extra = Environment.GetEnvironmentVariable("NB_XENIA_EXTRA");
@@ -108,6 +108,11 @@ public static class GameLauncher
     /// </summary>
     /// <summary>Game-code fixes every game gets: blueprints with parts the game lacks (e.g. ULTRA Parts) never crash it.</summary>
     public static readonly string[] AlwaysOn = { "unknown-parts-safe" };
+
+    /// <summary>The player's launch options that are executable tweaks (Play > 60 FPS), applied in memory by Xenia to
+    /// every game it starts (solo, rooms, editions) on top of the game's own mods; the game files never change, so rooms
+    /// still compare equal. reNut runs recompiled code and does not apply them.</summary>
+    public static List<string> LaunchOptions(AppSettings s) => s.Fps60 ? new List<string> { "fps-60" } : new List<string>();
 
     /// <summary>
     /// The player's blueprint library is kept safe (BlueprintVault): every blueprint seen is copied into the vault, and
@@ -150,7 +155,9 @@ public static class GameLauncher
         {
             var xb = File.ReadAllBytes(xex);
             var img = NB.Core.Formats.XexFile.Read(xb).GetImage();
-            hash = NB.Core.Mods.ExePatches.ResolveXeniaHash(NB.Core.Mods.ExePatches.XeniaModuleHash(xb, img), AppSettings.DataDir) ?? 0;
+            // Xenia's hash of this very executable (editions carry baked mods: their hash differs from the retail one)
+            hash = NB.Core.Mods.ExePatches.XeniaModuleHashOfImage(xb, img)
+                   ?? NB.Core.Mods.ExePatches.ResolveXeniaHash(NB.Core.Mods.ExePatches.XeniaModuleHash(xb, img), AppSettings.DataDir) ?? 0;
             if (hash == 0) mods.Clear();
         }
         NB.Core.Mods.ExePatches.WriteXeniaPatchFile(AppSettings.DataDir, hash, mods);

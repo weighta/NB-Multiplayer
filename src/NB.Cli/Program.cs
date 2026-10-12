@@ -2198,7 +2198,7 @@ static class Program
                     var image = xex.GetImage();
                     ulong imageHash = NB.Core.Mods.ExePatches.XeniaModuleHash(xexBytes, image);
                     string? xdir = args.Length > 2 && !args[2].StartsWith("--") ? args[2] : null;
-                    ulong hash = NB.Core.Mods.ExePatches.ResolveXeniaHash(imageHash, xdir) ?? throw new InvalidDataException("unknown executable: run it once in Xenia so xenia.log reports its module hash");
+                    ulong hash = NB.Core.Mods.ExePatches.XeniaModuleHashOfImage(xexBytes, image) ?? NB.Core.Mods.ExePatches.ResolveXeniaHash(imageHash, xdir) ?? throw new InvalidDataException("unknown executable: run it once in Xenia so xenia.log reports its module hash");
                     Console.WriteLine($"image hash {imageHash:X16} -> Xenia module hash {hash:X16}");
                     if (args.Contains("--hash-probe"))
                     {

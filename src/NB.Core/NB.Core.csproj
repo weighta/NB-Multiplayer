@@ -12,6 +12,7 @@
     <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
     <PackageReference Include="System.IO.Hashing" Version="9.0.0" />
     <EmbeddedResource Include="Data/retail_fingerprints.json" LogicalName="retail_fingerprints.json" />
+    <EmbeddedResource Include="Data/xenia_import_thunks.bin" LogicalName="xenia_import_thunks.bin" />
   </ItemGroup>
 
   <ItemGroup>

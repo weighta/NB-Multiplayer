@@ -416,6 +416,9 @@
                                              Content="Launch with Xenia (recommended)"/>
                                 <TextBlock Style="{StaticResource SubText}" FontSize="12.5" Margin="24,2,0,0" TextWrapping="Wrap"
                                            Text="The NB build of the Xenia emulator. Every mode: Xbox LIVE online races and sports, co-op rooms and solo games."/>
+                                <CheckBox x:Name="Fps60Check" Margin="24,8,0,0" Checked="Fps60_Changed" Unchecked="Fps60_Changed" Content="60 FPS"/>
+                                <TextBlock x:Name="Fps60Note" Style="{StaticResource SubText}" FontSize="12.5" Margin="48,2,0,0" TextWrapping="Wrap"
+                                           Text="Xenia games run at 60 frames per second instead of 30 (solo, rooms and every edition; your game files are not changed). Speeds and timers stay the same. In an Xbox LIVE room everyone should use the same setting."/>
                                 <RadioButton x:Name="EngineRenut" GroupName="engine" Margin="0,10,0,0" Checked="Engine_Changed"
                                              Content="Launch with reNut (native PC version, experimental)"/>
                                 <TextBlock Style="{StaticResource SubText}" FontSize="12.5" Margin="24,2,0,0" TextWrapping="Wrap"
