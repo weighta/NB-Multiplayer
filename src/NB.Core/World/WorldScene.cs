@@ -651,6 +651,9 @@ public sealed partial class WorldScene
     /// <summary>Flattens the reference-model instances inside <paramref name="m"/> (recursively, up to 6 levels) into
     /// (model, transform relative to m). Instance matrices inside a reference model are in that model's space. Nested
     /// models are looked up in the parent's bundle first, then in the world's load set.</summary>
+    /// <summary>Nested models drawn only by an animation of their parent (never at their bind pose).</summary>
+    static readonly string[] AnimationOnlyChildren = { "references_objects_animated_iceblock" };
+
     List<(ModelAsset Model, Matrix4x4 Local)> NestedModels(ModelAsset m, CaffFile caff, int depth = 0)
     {
         if (_nested.TryGetValue(m, out var hit)) return hit;
@@ -671,6 +674,9 @@ public sealed partial class WorldScene
                     continue;
                 }
                 if (child == m) continue;
+                // child models the game only shows while an animation of the parent moves them (e.g. Banjoland's conveyor ice
+                // block: unanimated it hangs in its bind pose high above the snowman, a plain cube the game never draws there)
+                if (AnimationOnlyChildren.Any(n => child.View.Name.EndsWith(n, StringComparison.OrdinalIgnoreCase))) continue;
                 if (!ReferenceEquals(loc!.Value.Caff, caff)) Audit.Note("nested models from another bundle", $"{AssetIds.DisplayName(child.View.Name)} ({loc.Value.Bundle:x6})");
                 list.Add((child, inst.World));
                 foreach (var (gm, gl) in NestedModels(child, loc.Value.Caff, depth + 1)) list.Add((gm, gl * inst.World));
