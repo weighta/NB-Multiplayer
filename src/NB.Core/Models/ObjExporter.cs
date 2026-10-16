@@ -13,13 +13,19 @@ public static class ObjExporter
 {
     static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
-    /// <summary>Picks the texture used as diffuse colour for a draw.</summary>
+    /// <summary>Picks the texture used as diffuse colour for a draw. Without a colour texture: another plain texture
+    /// (a decal), else the ambient-occlusion map, else the specular map, else a mask, else none (neutral grey). A normal /
+    /// bump map is never a colour (it showed purple-blue: Banjoland's gear fence, sign posts, toilet roll …).</summary>
     public static string? DiffuseTexture(MeshDraw d)
     {
         var colour = d.Textures.FirstOrDefault(t => t.Texture.Contains("colour") || t.Texture.Contains("color") || t.Texture.Contains("diffuse"));
         if (colour.Texture != null) return colour.Texture;
-        var nonNormal = d.Textures.Where(t => !t.Texture.Contains("normal") && !t.Texture.Contains("_nm") && !t.Texture.Contains("spec")).OrderBy(t => t.Slot).FirstOrDefault();
-        return nonNormal.Texture ?? d.Textures.OrderBy(t => t.Slot).Select(t => t.Texture).FirstOrDefault();
+        var bySlot = d.Textures.OrderBy(t => t.Slot).Select(t => t.Texture).ToList();
+        string Kind(string t) => MaterialImport.Classify(TextureFileStem(t)) is var k && k == "other" && (t.Contains("reflectionmaps") || t.Contains("velvet") || t.Contains("sparkle")) ? "skip" : k;
+        return bySlot.FirstOrDefault(t => Kind(t) == "other")
+            ?? bySlot.FirstOrDefault(t => Kind(t) == "ao")
+            ?? bySlot.FirstOrDefault(t => Kind(t) == "spec")
+            ?? bySlot.FirstOrDefault(t => Kind(t) == "mask");
     }
 
     /// <summary>
