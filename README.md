@@ -55,7 +55,7 @@
 | 📁 **Your modded game** | Modded your game folder by hand in the past? **Add a modded game folder** turns it into a mod you can combine with others and play in co-op. |
 | ❄️ **Snowy Showdown Town** | The first official map mod: Showdown Town under snow, with falling snow everywhere, holly and red-and-green bunting, and winter light and skies for every time of day. Combines with co-op. |
 | ⚙️ **ULTRA Parts** | A bundled vehicle-parts mod: ULTRA Engine, Fuel, Ammo and Wheels, Plane Hull, Tiki and Fusion Reactor in Mumbo's Motors. |
-| 🗂️ **Projects** | Your [NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) projects: NB Multiplayer installs and updates the editor, opens projects in it and turns them into mods. |
+| 🗂️ **Projects** | Your [NB Studio](https://github.com/weighta/NB-Studio) projects: NB Multiplayer installs and updates the editor, opens projects in it and turns them into mods. |
 | 🖥️ **reNut** *(experimental)* | Play with [reNut](https://github.com/masterspike52/reNut), the game recompiled to native PC code, instead of Xenia: same editions, mods, co-op and Character Select (Settings > Game engine). |
 | 💾 **All-unlocked save** | Skip the intro: start every game with everything unlocked (your own save is kept aside). |
 | 🌐 **Steam connection** | Rooms through Steam's relay network: share a room code, nothing to configure. Home network and direct internet work too. |
@@ -338,7 +338,7 @@ garage. You can change it while the game runs.
 The mod was made the way many players mod: by changing a copy of the game folder by hand, then turning it into a mod
 with **Add a modded game folder** / NB Studio's **Create Patch from a Modified Game Folder**. Its build script and the
 research behind the snow, light and fog are in the
-[NB Studio repository](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) (`snow/`).
+[NB Studio repository](https://github.com/weighta/NB-Studio) (`snow/`).
 
 ## Mods, editions and tweaks
 
@@ -360,7 +360,7 @@ mods, press **Build an edition**, then host it or play it alone with **Play solo
   (9999 of every part you own) and *L.O.G.'s Choice unlock* (CHOOSE VEHICLE unlocks in a L.O.G.'s Choice game once you
   have its TT trophy).
 * **Add a mod (.nbpatch)**: mods made with
-  [NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) (or by friends) go into
+  [NB Studio](https://github.com/weighta/NB-Studio) (or by friends) go into
   your mod library.
 * **Add a modded game folder**: a game folder you changed by hand (replaced bundles or textures, a hex-edited
   `default.xex`) becomes a mod. NB Multiplayer compares it with the original game (it knows the size and SHA-256 of
@@ -520,7 +520,7 @@ The app is `src/NB.Multiplayer/bin/Release/net9.0-windows/NBMultiplayer.exe`. A 
 | `coop/`, `charsel/`, `snow/` | Recipes that rebuild the bundled mods from your own copy of the game (`sh coop/build.sh`, `sh charsel/build.sh`, `sh snow/build.sh`; they need NB.Cli built in Release and Python). Set `NB_GAME` to your untouched game folder. Their output in `*/dist/` is bundled into NB Multiplayer when present. |
 
 NB Studio, the world editor, lives in its own repository,
-[NB Studio](https://github.com/weighta/NB-Studio-Banjo-Kazooie-Nuts-and-Bolts-World-Editor-) (same NB.Core).
+[NB Studio](https://github.com/weighta/NB-Studio) (same NB.Core).
 
 * **The Xenia build**: apply [`xenia/nb-xenia-netplay.patch`](xenia/nb-xenia-netplay.patch) to
   AdrianCassar/xenia-canary `netplay_canary_experimental` at commit `6dbaa1f`; see [xenia/README.md](xenia/README.md).
