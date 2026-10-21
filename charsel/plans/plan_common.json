@@ -2679,28 +2679,28 @@
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 72,
-"val": "0258B833"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 76,
-"val": "0658B833"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 164,
-"val": "027A6D1B"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 168,
-"val": "06284D87"
+"val": "00000000"
 },
 {
 "op": "u32",
@@ -3015,28 +3015,28 @@
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 2280,
-"val": "027A6D1B"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 2284,
-"val": "06284D87"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 2372,
-"val": "0258B833"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 2376,
-"val": "0658B833"
+"val": "00000000"
 },
 {
 "op": "u32",
@@ -3113,28 +3113,28 @@
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 2924,
-"val": "027A6D1B"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 2928,
-"val": "06284D87"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 3016,
-"val": "0258B833"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 3020,
-"val": "0658B833"
+"val": "00000000"
 },
 {
 "op": "u32",
@@ -4695,98 +4695,98 @@
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13320,
-"val": "0204E8D7"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13324,
-"val": "0604E8D7"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13412,
-"val": "027A6D1B"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13416,
-"val": "06284D87"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13504,
-"val": "027A6D1B"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13508,
-"val": "06284D87"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13596,
-"val": "0258B833"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13600,
-"val": "0658B833"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13688,
-"val": "0258B833"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13692,
-"val": "0658B833"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13780,
-"val": "0204E8D7"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13784,
-"val": "0604E8D7"
+"val": "00000000"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13872,
-"val": "0204E8D7"
+"val": "027FFE80"
 },
 {
 "op": "u32",
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 13876,
-"val": "0604E8D7"
+"val": "00000000"
 },
 {
 "op": "u32",

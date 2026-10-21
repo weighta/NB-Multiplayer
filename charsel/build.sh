@@ -12,7 +12,7 @@ cd "$(dirname "$0")/.."
 CLI=${NB_CLI:-NBModTool/src/NB.Cli/bin/Release/net9.0-windows/NB.Cli.exe}; [ -f "$CLI" ] || CLI=src/NB.Cli/bin/Release/net9.0-windows/NB.Cli.exe
 WS=${CHARSEL_WS:-Workspaces/charselbuild}
 FRESH=${NB_GAME:-"Banjo Kazooie Nuts & Bolts (FRESH)"}
-python charsel/make_ops.py
+python charsel/make_ops_b.py   # reads charsel/plans (the shipped, duration-aware plans)
 if [ ! -f "$WS/workspace.json" ]; then echo "== workspace $WS (fresh copy of the game)"; $CLI ws-create "$FRESH" "$WS"; fi
 python - "$WS/workspace.json" <<'EOF'
 import json, sys
@@ -20,6 +20,6 @@ p = sys.argv[1]; m = json.load(open(p)); m['ExeMods'] = ['charsel']; json.dump(m
 EOF
 mkdir -p charsel/dist
 $CLI patch-build $WS ${CHARSEL_OUT:-charsel/dist/CharacterSelect.nbpatch} --name "Character Select" --author weighta \
-     --version 1.1 --category gameplay --ops charsel/ops.json --multiplayer world --tags "Characters,Showdown Town" \
+     --version 1.2 --category gameplay --ops charsel/ops.json --multiplayer world --tags "Characters,Showdown Town" \
      --desc "Play as someone else: Tuxedo or Robot Banjo, Kazooie, Mumbo, Grunty or L.O.G. everywhere, and in Showdown Town also Trophy Thomas, Klungo, Mr. Fit, Humba Wumba, Bottles, Boggy, King Jingaling, Jolly, Captain Blubber, Piddles or a Jinjo. Choose your character in NB Multiplayer (Play page); in co-op the other players see you as that character." \
      --extra mode=charsel

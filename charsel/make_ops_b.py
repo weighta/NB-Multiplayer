@@ -1,6 +1,6 @@
 """coopB: charsel/make_ops.py reading the plans of this folder -> ops.json here."""
 import json, os
-HERE = os.path.dirname(os.path.abspath(__file__)); R = HERE
+HERE = os.path.dirname(os.path.abspath(__file__)); R = os.path.join(HERE, 'plans')
 ops = [['model-keep-joints', '685374', 'aid_model_banjox_actor_banjo', 'aid_model_banjox_actor_charsel_kazooie', 'PACK']]
 for plan in ('plan_kazooie_common.json', 'plan_common.json', 'plan_town.json'):
     sets = {}; order = []

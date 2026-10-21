@@ -35,6 +35,12 @@ TIMED_LOOPS = ('wrencharound', 'wrenchwhirl')
 
 def limit(bd): return max(bd * 2.0, bd + 0.6)
 
+# characters whose own seated mood animations were made for standing at their chair (Grunty's driveangry / drivecheer /
+# drivesad rise out of the seat, like her idle): every seated reaction (moods, honking at townsfolk, challenge win/lose,
+# gunner moods) keeps the seated drive pose instead
+SEATED_ONLY = {'grunty'}
+SEATED_REACTIONS = ('vehicle_mood_', 'vehicle_warn', 'gunner_mood_', 'gunnergrenade_mood_', 'challenge_win', 'challenge_lose')
+
 _dur_cache = {}
 def D(aid):
     if aid not in _dur_cache: _dur_cache[aid] = dur(aid)
@@ -52,6 +58,10 @@ def mapping(char, bundles=('234cec', '685374'), verbose=False, report=None):
     out = []
     for (act, w), (act2, a, e, nm, p) in zip(banjo, base):
         assert act == act2
+        if char in SEATED_ONLY and act.startswith(SEATED_REACTIONS) and 'vehicle_drive' in avail:
+            ww = avail['vehicle_drive']
+            if report is not None: report.append((act, D(w[0]) or 0, p, D(a) or 0, 'vehicle_drive', D(ww[0]) or 0))
+            out.append((act, ww[0], ww[1], N[ww[0]][0], 'vehicle_drive')); continue
         oneshot = bool(w[6] & 0x01000000)
         bd, d = D(w[0]), D(a) if a else None
         timed = oneshot or act.startswith(TIMED_LOOPS)
