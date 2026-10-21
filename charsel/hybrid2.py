@@ -39,7 +39,10 @@ def limit(bd): return max(bd * 2.0, bd + 0.6)
 # drivesad rise out of the seat, like her idle): every seated reaction (moods, honking at townsfolk, challenge win/lose,
 # gunner moods) keeps the seated drive pose instead
 SEATED_ONLY = {'grunty'}
-SEATED_REACTIONS = ('vehicle_mood_', 'vehicle_warn', 'gunner_mood_', 'gunnergrenade_mood_', 'challenge_win', 'challenge_lose')
+# ... and the stopped pose too: her drivestand drops her arm to her side, and blending it with the drive pose at every
+# start and stop swung the arm (seen in game, NB MP 2.2.10)
+SEATED_REACTIONS = ('vehicle_mood_', 'vehicle_warn', 'gunner_mood_', 'gunnergrenade_mood_', 'challenge_win', 'challenge_lose',
+                    'vehicle_drivestand')
 
 _dur_cache = {}
 def D(aid):

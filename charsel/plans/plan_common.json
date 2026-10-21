@@ -4569,7 +4569,7 @@
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 12492,
-"val": "027CD6F8"
+"val": "027FFE80"
 },
 {
 "op": "u32",
@@ -4583,7 +4583,7 @@
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 12584,
-"val": "027CD6F8"
+"val": "027FFE80"
 },
 {
 "op": "u32",
@@ -4597,7 +4597,7 @@
 "bundle": "685374",
 "asset": "aid_animtable_banjox_charsel_grunty",
 "off": 12676,
-"val": "027CD6F8"
+"val": "027FFE80"
 },
 {
 "op": "u32",
